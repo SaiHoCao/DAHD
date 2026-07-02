@@ -167,7 +167,7 @@ class EAGLEBaseline(SpeculativeDrafter):
     ) -> VerifyResult:
         """Verify draft tokens against the target model.
 
-        Uses the same greedy speculative decoding verification as Medusa:
+        Uses the same greedy speculative decoding verification as parallel drafting:
         accept tokens sequentially until the first disagreement.
 
         Args:

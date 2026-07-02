@@ -9,11 +9,11 @@ Key fixes vs v1:
   5. Metrics: report avg_tokens_per_step (= n_accepted + 2) alongside n_accepted.
 
 Architecture compatibility:
-  - If 'checkpoints/medusa/gumiho_best.pt' exists → use new GumihoBranch.
-  - Falls back to old MedusaModel if only legacy checkpoint is found.
+  - If 'checkpoints/gumiho/gumiho_best.pt' exists → use new GumihoBranch.
+  - Falls back to old LegacyParallelModel if only legacy checkpoint is found.
 
 Usage:
-    CUDA_VISIBLE_DEVICES=2 python experiments/phase4_e2e/run_medusa_e2e_comparison.py
+    CUDA_VISIBLE_DEVICES=2 python experiments/phase4_e2e/run_e2e_comparison.py
 """
 
 import json
@@ -52,8 +52,8 @@ class E2EConfig:
     eagle3_config_path:   str = "/mnt/nas1/hf/qwen3_8b_eagle3/config.json"
     eval_data_path:       str = "/mnt/nas1/hf/qwen3_8b_eagle3/eagle_data.jsonl"
 
-    gumiho_ckpt: str = str(PROJECT_ROOT / "checkpoints/medusa/gumiho_best.pt")
-    legacy_ckpt: str = str(PROJECT_ROOT / "checkpoints/medusa/medusa_best.pt")
+    gumiho_ckpt: str = str(PROJECT_ROOT / "checkpoints/gumiho/gumiho_best.pt")
+    legacy_ckpt: str = str(PROJECT_ROOT / "checkpoints/gumiho/legacy_best.pt")
 
     # Architecture
     hidden_size:          int         = 4096
@@ -88,7 +88,7 @@ class E2EConfig:
     per_prompt_timeout: int = 180
 
     # Output
-    output_dir: str = str(PROJECT_ROOT / "results/phase4_medusa")
+    output_dir: str = str(PROJECT_ROOT / "results/phase4_e2e")
 
     device: str   = "cuda"
     dtype:  torch.dtype = torch.bfloat16
@@ -175,7 +175,7 @@ class GumihoBranch(nn.Module):
         return [self.lm_head(h(x))[0].argmax().item() for h in self.heads]
 
 
-class LegacyMedusaHead(nn.Module):
+class LegacyParallelHead(nn.Module):
     def __init__(self, hidden_size, vocab_size):
         super().__init__()
         self.linear  = nn.Linear(hidden_size, hidden_size)
@@ -186,10 +186,10 @@ class LegacyMedusaHead(nn.Module):
         return self.lm_head(x + self.act(self.linear(x)))
 
 
-class LegacyMedusaModel(nn.Module):
+class LegacyParallelModel(nn.Module):
     def __init__(self, hidden_size, vocab_size, num_heads=5):
         super().__init__()
-        self.heads   = nn.ModuleList([LegacyMedusaHead(hidden_size, vocab_size) for _ in range(num_heads)])
+        self.heads   = nn.ModuleList([LegacyParallelHead(hidden_size, vocab_size) for _ in range(num_heads)])
         self.lm_head = nn.Linear(hidden_size, vocab_size, bias=False)
 
     @torch.no_grad()
@@ -274,9 +274,9 @@ class SpecDecEngine:
             self.parallel_branch.load_state_dict(ckpt["model_state_dict"])
             self.parallel_type = "gumiho"
         elif Path(self.cfg.legacy_ckpt).exists():
-            self.log.warning(f"  → Legacy MedusaModel from {self.cfg.legacy_ckpt}")
-            self.log.warning("    Retrain with train_medusa_heads.py to get GumihoBranch for better results.")
-            self.parallel_branch = LegacyMedusaModel(
+            self.log.warning(f"  → Legacy ParallelModel from {self.cfg.legacy_ckpt}")
+            self.log.warning("    Retrain with train_gumiho_heads.py to get GumihoBranch for better results.")
+            self.parallel_branch = LegacyParallelModel(
                 hidden_size=self.cfg.hidden_size,
                 vocab_size=self.cfg.vocab_size,
                 num_heads=5,
@@ -830,7 +830,7 @@ def run_evaluation():
     print("=" * 70)
     print(f"  Target   : {cfg.target_model_path}")
     print(f"  EAGLE-3  : {cfg.eagle3_weights_path}")
-    print(f"  Parallel : gumiho_best.pt (or legacy medusa_best.pt)")
+    print(f"  Parallel : gumiho_best.pt (or legacy checkpoint)")
     print(f"  Prompts  : {cfg.num_prompts}  |  MaxNewTokens: {cfg.max_new_tokens}")
     print(f"  DAHD thresholds: easy>{cfg.easy_threshold} (K={cfg.k_easy}), "
           f"medium ({cfg.hard_threshold}–{cfg.easy_threshold}) (K={cfg.k_medium}), "

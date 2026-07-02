@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Train Medusa Heads with large-scale data (500K+ samples, 15-20 epochs).
+"""Train Gumiho Parallel Heads with large-scale data (500K+ samples, 15-20 epochs).
 
 Targets:
 - head_1 accuracy > 40%
 - head_2 accuracy > 20%
 
 Usage:
-    CUDA_VISIBLE_DEVICES=2 python experiments/phase2_architecture/train_medusa_large.py
+    CUDA_VISIBLE_DEVICES=2 python experiments/phase2_architecture/train_gumiho_large.py
 """
 
 import json
@@ -34,7 +34,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 # ============================================================================
 
 @dataclass
-class MedusaLargeConfig:
+class GumihoLargeConfig:
     # Model
     hidden_size: int = 4096
     vocab_size: int = 151936
@@ -45,8 +45,8 @@ class MedusaLargeConfig:
     target_model_path: str = "/mnt/nas1/hf/Qwen3-8B/"
     train_data_dir: str = str(PROJECT_ROOT / "data/training_large/train")
     val_data_dir: str = str(PROJECT_ROOT / "data/training_large/val")
-    checkpoint_dir: str = str(PROJECT_ROOT / "checkpoints/medusa_large")
-    results_dir: str = str(PROJECT_ROOT / "results/phase4_medusa_large")
+    checkpoint_dir: str = str(PROJECT_ROOT / "checkpoints/gumiho_large")
+    results_dir: str = str(PROJECT_ROOT / "results/phase4_e2e_large")
     
     # Training
     batch_size: int = 64
@@ -86,8 +86,8 @@ class ResBlock(nn.Module):
         return x + self.act(self.linear(x))
 
 
-class MedusaModel(nn.Module):
-    """Standard Medusa: K independent heads with shared lm_head."""
+class GumihoModel(nn.Module):
+    """Standard Gumiho: K independent heads with shared lm_head."""
     
     def __init__(self, hidden_size=4096, vocab_size=151936, num_heads=5, num_layers=1):
         super().__init__()
@@ -126,8 +126,8 @@ class MedusaModel(nn.Module):
 # Dataset (memory-mapped for large data)
 # ============================================================================
 
-class MedusaLargeDataset(Dataset):
-    """Dataset for large-scale Medusa training with lazy loading."""
+class GumihoLargeDataset(Dataset):
+    """Dataset for large-scale Gumiho training with lazy loading."""
     
     def __init__(self, data_dir: str, num_heads: int = 5):
         self.num_heads = num_heads
@@ -295,7 +295,7 @@ def evaluate(model, dataloader, config, device):
 # ============================================================================
 
 def main():
-    config = MedusaLargeConfig()
+    config = GumihoLargeConfig()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
     torch.manual_seed(config.seed)
@@ -306,7 +306,7 @@ def main():
     Path(config.results_dir).mkdir(parents=True, exist_ok=True)
     
     print("=" * 70)
-    print("Medusa Heads Large-Scale Training")
+    print("Gumiho Parallel Heads Large-Scale Training")
     print("=" * 70)
     print(f"  Hidden size:   {config.hidden_size}")
     print(f"  Vocab size:    {config.vocab_size}")
@@ -319,7 +319,7 @@ def main():
     print()
     
     # ---- Initialize model ----
-    print("[1/4] Initializing Medusa model with Qwen3-8B lm_head...")
+    print("[1/4] Initializing Gumiho model with Qwen3-8B lm_head...")
     from safetensors import safe_open
     
     lm_head_shard = os.path.join(config.target_model_path, "model-00005-of-00005.safetensors")
@@ -327,19 +327,19 @@ def main():
         lm_head_weight = f.get_tensor("lm_head.weight").float()
     print(f"  lm_head shape: {lm_head_weight.shape}")
     
-    medusa_model = MedusaModel(
+    gumiho_model = GumihoModel(
         hidden_size=config.hidden_size,
         vocab_size=config.vocab_size,
         num_heads=config.num_heads,
         num_layers=config.num_layers,
     )
-    medusa_model.lm_head.weight.data.copy_(lm_head_weight)
+    gumiho_model.lm_head.weight.data.copy_(lm_head_weight)
     del lm_head_weight
     gc.collect()
     
-    medusa_model = medusa_model.to(device)
-    total_params = sum(p.numel() for p in medusa_model.parameters())
-    trainable_params = sum(p.numel() for p in medusa_model.parameters() if p.requires_grad)
+    gumiho_model = gumiho_model.to(device)
+    total_params = sum(p.numel() for p in gumiho_model.parameters())
+    trainable_params = sum(p.numel() for p in gumiho_model.parameters() if p.requires_grad)
     print(f"  Total params: {total_params / 1e6:.1f}M, Trainable: {trainable_params / 1e6:.1f}M")
     print(f"  GPU memory: {torch.cuda.memory_allocated() / 1e9:.2f} GB")
     
@@ -354,8 +354,8 @@ def main():
         train_dir = str(PROJECT_ROOT / "data/training/train")
         val_dir = str(PROJECT_ROOT / "data/training/val")
     
-    train_dataset = MedusaLargeDataset(train_dir, num_heads=config.num_heads)
-    val_dataset = MedusaLargeDataset(val_dir, num_heads=config.num_heads)
+    train_dataset = GumihoLargeDataset(train_dir, num_heads=config.num_heads)
+    val_dataset = GumihoLargeDataset(val_dir, num_heads=config.num_heads)
     
     train_loader = DataLoader(
         train_dataset, batch_size=config.batch_size, shuffle=True,
@@ -371,7 +371,7 @@ def main():
     
     # ---- Setup optimizer ----
     print("\n[3/4] Setting up optimizer...")
-    param_groups = medusa_model.get_param_groups(
+    param_groups = gumiho_model.get_param_groups(
         config.lr_resblock, config.lr_lm_head, config.weight_decay
     )
     optimizer = torch.optim.AdamW(param_groups)
@@ -415,11 +415,11 @@ def main():
         
         # Train
         train_loss, train_accs = train_epoch(
-            medusa_model, train_loader, optimizer, scheduler, scaler, config, epoch, device
+            gumiho_model, train_loader, optimizer, scheduler, scaler, config, epoch, device
         )
         
         # Evaluate
-        val_loss, val_accs = evaluate(medusa_model, val_loader, config, device)
+        val_loss, val_accs = evaluate(gumiho_model, val_loader, config, device)
         
         epoch_time = time.time() - epoch_start
         
@@ -447,9 +447,9 @@ def main():
             print(f"  ★ TARGET MET: head_2 accuracy {val_accs[2]*100:.1f}% > 20%")
         
         # Save checkpoint every epoch
-        ckpt_path = Path(config.checkpoint_dir) / f"medusa_epoch{epoch+1}.pt"
+        ckpt_path = Path(config.checkpoint_dir) / f"gumiho_epoch{epoch+1}.pt"
         torch.save({
-            "model_state_dict": medusa_model.state_dict(),
+            "model_state_dict": gumiho_model.state_dict(),
             "optimizer_state_dict": optimizer.state_dict(),
             "epoch": epoch + 1,
             "val_loss": val_loss,
@@ -462,9 +462,9 @@ def main():
             best_val_loss = val_loss
             best_epoch = epoch + 1
             no_improve_count = 0
-            best_path = Path(config.checkpoint_dir) / "medusa_best.pt"
+            best_path = Path(config.checkpoint_dir) / "gumiho_best.pt"
             torch.save({
-                "model_state_dict": medusa_model.state_dict(),
+                "model_state_dict": gumiho_model.state_dict(),
                 "epoch": epoch + 1,
                 "val_loss": val_loss,
                 "val_accs": val_accs,
@@ -478,7 +478,7 @@ def main():
                 break
         
         # Save training log incrementally
-        log_path = Path(config.results_dir) / "medusa_large_training_log.json"
+        log_path = Path(config.results_dir) / "gumiho_large_training_log.json"
         with open(log_path, "w") as f:
             json.dump(training_log, f, indent=2)
         
@@ -498,9 +498,9 @@ def main():
     print(f"  Best val loss: {best_val_loss:.4f}")
     
     # Load best and report
-    best_ckpt = torch.load(Path(config.checkpoint_dir) / "medusa_best.pt", map_location='cpu', weights_only=False)
+    best_ckpt = torch.load(Path(config.checkpoint_dir) / "gumiho_best.pt", map_location='cpu', weights_only=False)
     print(f"  Best val accs: " + " | ".join(f"h{i}={a*100:.1f}%" for i, a in enumerate(best_ckpt['val_accs'])))
-    print(f"  Checkpoint: {config.checkpoint_dir}/medusa_best.pt")
+    print(f"  Checkpoint: {config.checkpoint_dir}/gumiho_best.pt")
     print(f"{'='*70}")
 
 

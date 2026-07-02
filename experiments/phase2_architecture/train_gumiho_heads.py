@@ -35,7 +35,7 @@ Key fixes vs v1:
      supported via auto-detection.
 
 Usage:
-    CUDA_VISIBLE_DEVICES=2 python experiments/phase2_architecture/train_medusa_heads.py
+    CUDA_VISIBLE_DEVICES=2 python experiments/phase2_architecture/train_gumiho_heads.py
 """
 
 import json
@@ -71,8 +71,8 @@ class TrainingConfig:
     target_model_path: str = "/mnt/nas1/hf/Qwen3-8B/"
     train_data_dir:    str = str(PROJECT_ROOT / "data/training/train")
     val_data_dir:      str = str(PROJECT_ROOT / "data/training/val")
-    checkpoint_dir:    str = str(PROJECT_ROOT / "checkpoints/medusa")
-    results_dir:       str = str(PROJECT_ROOT / "results/phase4_medusa")
+    checkpoint_dir:    str = str(PROJECT_ROOT / "checkpoints/gumiho")
+    results_dir:       str = str(PROJECT_ROOT / "results/phase4_e2e")
 
     # Training hyper-params
     batch_size:                  int   = 16

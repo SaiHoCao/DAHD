@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Generate large-scale training data for Medusa heads.
+"""Generate large-scale training data for Gumiho parallel heads.
 
 Uses all 397 prompts with max_new_tokens=512, multiple seeds for diversity.
-Target: 500K-1M samples for robust Medusa training.
+Target: 500K-1M samples for robust Gumiho parallel training.
 
 Usage:
     CUDA_VISIBLE_DEVICES=2 python experiments/phase2_architecture/generate_large_training_data.py
@@ -155,7 +155,7 @@ def save_samples_batch(samples: list, output_path: Path):
 def main():
     start_time = time.time()
     print("=" * 70)
-    print("Large-Scale Medusa Training Data Generation")
+    print("Large-Scale Gumiho Training Data Generation")
     print("=" * 70)
     print(f"  Target: 500K+ samples")
     print(f"  Prompts: ALL 397 (train={TRAIN_SPLIT}, val={397-TRAIN_SPLIT})")

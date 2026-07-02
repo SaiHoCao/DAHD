@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 4: End-to-end benchmark comparison for speculative decoding methods.
 
-Runs all methods (AR baseline, Medusa, EAGLE, DAHD) on multiple tasks
+Runs all methods (AR baseline, Parallel Gumiho, EAGLE, DAHD) on multiple tasks
 with proper statistical analysis including confidence intervals, outlier
 removal, and pairwise significance tests.
 
@@ -11,7 +11,7 @@ Usage:
         --checkpoint checkpoints/dahd_final.pt \
         --tasks GSM8K,MATH,HumanEval,MT-Bench,CNN-DailyMail \
         --num_samples 200 \
-        --baselines ar,medusa,eagle,dahd \
+        --baselines ar,parallel,eagle,dahd \
         --num_runs 30 \
         --output_dir results/phase4_results
 """
@@ -67,7 +67,7 @@ def parse_args() -> argparse.Namespace:
         help="Directory to save benchmark results."
     )
     parser.add_argument(
-        "--baselines", type=str, default="ar,medusa,eagle,dahd",
+        "--baselines", type=str, default="ar,parallel,eagle,dahd",
         help="Comma-separated list of methods to benchmark."
     )
     parser.add_argument(
@@ -159,14 +159,14 @@ def create_dahd_method(
     return dahd_generate
 
 
-def create_medusa_baseline(target_model, tokenizer, device: str, max_new_tokens: int):
-    """Create a simulated Medusa-style parallel drafting baseline.
+def create_parallel_baseline(target_model, tokenizer, device: str, max_new_tokens: int):
+    """Create a simulated Gumiho-style parallel drafting baseline.
 
     Note: This is a simplified simulation. In a full implementation,
-    you would load a trained Medusa head.
+    you would load a trained Gumiho parallel head.
     """
-    def medusa_generate(input_ids: torch.Tensor) -> dict:
-        # Simulate Medusa: parallel draft with fixed k=5, lower acceptance
+    def parallel_generate(input_ids: torch.Tensor) -> dict:
+        # Simulate parallel: parallel draft with fixed k=5, lower acceptance
         with torch.no_grad():
             outputs = target_model.generate(
                 input_ids,
@@ -174,9 +174,9 @@ def create_medusa_baseline(target_model, tokenizer, device: str, max_new_tokens:
                 do_sample=False,
             )
         num_tokens = outputs.size(1) - input_ids.size(1)
-        # Simulated metrics (in real setup, would come from actual Medusa heads)
+        # Simulated metrics (in real setup, would come from actual Gumiho parallel heads)
         return {"num_tokens": num_tokens, "acceptance_rate": 0.6}
-    return medusa_generate
+    return parallel_generate
 
 
 def create_eagle_baseline(target_model, tokenizer, device: str, max_new_tokens: int):
@@ -264,7 +264,7 @@ def main() -> None:
     print("[3/5] Setting up method implementations...")
     method_factories = {
         "ar": lambda: create_ar_baseline(target_model, tokenizer, args.device, args.max_new_tokens),
-        "medusa": lambda: create_medusa_baseline(target_model, tokenizer, args.device, args.max_new_tokens),
+        "parallel": lambda: create_parallel_baseline(target_model, tokenizer, args.device, args.max_new_tokens),
         "eagle": lambda: create_eagle_baseline(target_model, tokenizer, args.device, args.max_new_tokens),
         "dahd": lambda: create_dahd_method(target_model, draft_module, tokenizer, args.device, args.max_new_tokens),
     }

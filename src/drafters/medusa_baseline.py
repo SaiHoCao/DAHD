@@ -1,10 +1,12 @@
-"""Medusa baseline drafter implementation.
+"""Parallel baseline drafter implementation (Gumiho-style).
 
-Medusa uses multiple independent MLP heads to predict future tokens in parallel.
+NOTE: This file retains the legacy name 'medusa_baseline.py' for import compatibility.
+
+The architecture uses multiple independent MLP heads to predict future tokens in parallel.
 Each head is responsible for predicting the token at a specific future position,
 all operating on the same hidden state from the target model.
 
-Reference: Cai et al., "Medusa: Simple LLM Inference Acceleration Framework
+Reference architecture inspired by: Cai et al., "Medusa: Simple LLM Inference Acceleration Framework
 with Multiple Decoding Heads" (2024).
 """
 

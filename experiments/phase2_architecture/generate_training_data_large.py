@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate LARGE training data for Medusa Heads.
+"""Generate LARGE training data for Gumiho Parallel Heads.
 
 Generates 500K+ samples by using all 397 prompts with longer generation (1024 tokens).
 Saves to data/training_large/ with same format as original (hidden_concat, token_ids, next_tokens).

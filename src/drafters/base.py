@@ -43,7 +43,7 @@ class VerifyResult(NamedTuple):
 class SpeculativeDrafter(nn.Module, ABC):
     """Abstract base class for speculative decoding drafters.
 
-    All drafter implementations (Medusa, EAGLE, DAHD, etc.) should inherit
+    All drafter implementations (Parallel, EAGLE, DAHD, etc.) should inherit
     from this class and implement the `draft` and `verify` methods.
     """
 

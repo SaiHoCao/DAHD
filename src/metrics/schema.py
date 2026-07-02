@@ -170,7 +170,7 @@ class GlobalBenchmarkMetrics:
         benchmark_id: Unique identifier for this benchmark run.
         timestamp: ISO format timestamp of the run.
         model: Model name/path used.
-        method: Speculative decoding method ("dahd", "medusa", "eagle", etc.).
+        method: Speculative decoding method ("dahd", "parallel", "eagle", etc.).
         task: Benchmark task name.
         avg_latency_p50_ms: 50th percentile latency.
         avg_latency_p95_ms: 95th percentile latency.
@@ -188,7 +188,7 @@ class GlobalBenchmarkMetrics:
     benchmark_id: str
     timestamp: str
     model: str
-    method: str  # "dahd", "medusa", "eagle", etc.
+    method: str  # "dahd", "parallel", "eagle", etc.
     task: str
     avg_latency_p50_ms: float
     avg_latency_p95_ms: float

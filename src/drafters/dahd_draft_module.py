@@ -3,7 +3,7 @@
 This module implements the core components of the DAHD approach:
 - SharedBottomLayer: Shared feature extraction using small Transformer layers
 - ARBranch: Autoregressive drafting branch for hard samples
-- ParallelBranch: Parallel drafting branch (Medusa-style) for easy samples
+- ParallelBranch: Parallel drafting branch (Gumiho-style) for easy samples
 - DifficultyProbe: Lightweight probe for estimating next-token difficulty
 - DifficultyRouter: Routes between AR and Parallel branches based on difficulty
 - DAHDDraftModule: The complete draft module combining all components
@@ -175,7 +175,7 @@ class ARBranch(nn.Module):
 
 
 class ParallelBranch(nn.Module):
-    """Parallel drafting branch (Medusa-style).
+    """Parallel drafting branch (Gumiho-style).
 
     Generates all k draft tokens simultaneously using independent prediction heads.
     Suitable for easy samples where parallelism provides speed benefits.
@@ -389,7 +389,7 @@ class DAHDDraftModule(nn.Module):
     5. ParallelBranch for easy samples (parallel, lower latency)
 
     The key insight is that easy tokens (high confidence) can be drafted in
-    parallel (Medusa-style) for speed, while hard tokens benefit from
+    parallel (Gumiho-style) for speed, while hard tokens benefit from
     autoregressive generation (EAGLE-style) for accuracy.
     """
 
