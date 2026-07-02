@@ -176,7 +176,7 @@ $$\alpha_{\textrm{ema}}^{(t+1)} = \beta \cdot \alpha_{\textrm{observed}}^{(t)} +
 
 **Hybrid Score**：综合两个信号得到最终难度分数：
 
-$$s = \lambda \cdot \textrm{probe\_confidence} + (1-\lambda) \cdot \textrm{EMA}$$
+$$s = \lambda \cdot p_{\textrm{conf}} + (1-\lambda) \cdot \alpha_{\textrm{ema}}$$
 
 其中 $\lambda = 0.6$ 为 probe 权重。
 
