@@ -1,0 +1,36 @@
+# 大文件 - 模型权重
+checkpoints/*.pt
+checkpoints/**/*.pt
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# 训练数据（太大）
+data/training/
+data/training_large/
+
+# 日志和缓存
+*.log
+__pycache__/
+.nv/
+*.pyc
+.cache/
+
+# 系统文件
+.DS_Store
+*.swp
+*~
+
+# IDE
+.vscode/
+.idea/
+
+# 大的原始数据文件
+results/**/*.jsonl
+results/**/stdout.log
+results/**/run_log.txt
+
+# 但保留重要的 JSON 结果和图片
+!results/**/*.json
+!results/**/*.png

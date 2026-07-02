@@ -1,0 +1,21 @@
+[project]
+name = "dahd-speculative-decoding"
+version = "0.1.0"
+description = "Difficulty-Adaptive Hybrid Drafting for Speculative Decoding"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.0",
+    "transformers>=4.36",
+    "accelerate",
+    "scipy",
+    "numpy",
+    "matplotlib",
+    "seaborn",
+    "pandas",
+    "pyarrow",
+    "datasets",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]

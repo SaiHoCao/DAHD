@@ -1,0 +1,86 @@
+{
+  "code": {
+    "mean_acceptance": 0.21780693533270853,
+    "mean_confidence": 0.5511733361419496,
+    "std_confidence": 0.28036404493078465,
+    "easy_ratio": 0.25585754451733833,
+    "hard_ratio": 0.24104967197750704,
+    "mean_acceptance_length": 1.0890346766635426,
+    "median_acceptance_length": 1.0,
+    "dip_pvalue": 0.0,
+    "gmm_best_n": 2,
+    "gmm_means": [
+      0.3377252905432411,
+      0.818180833079649
+    ],
+    "gmm_weights": [
+      0.5557381969788936,
+      0.44426180302110635
+    ],
+    "num_tokens_evaluated": 5335,
+    "num_prompts": 25
+  },
+  "math": {
+    "mean_acceptance": 0.23530552861299708,
+    "mean_confidence": 0.548781808067536,
+    "std_confidence": 0.27059431576491816,
+    "easy_ratio": 0.2428709990300679,
+    "hard_ratio": 0.2267701260911736,
+    "mean_acceptance_length": 1.1765276430649854,
+    "median_acceptance_length": 1.0,
+    "dip_pvalue": 0.0,
+    "gmm_best_n": 2,
+    "gmm_means": [
+      0.8139801269055136,
+      0.3530721414987463
+    ],
+    "gmm_weights": [
+      0.42461765203757346,
+      0.5753823479624266
+    ],
+    "num_tokens_evaluated": 5155,
+    "num_prompts": 25
+  },
+  "writing": {
+    "mean_acceptance": 0.20498614958448755,
+    "mean_confidence": 0.5086828266876722,
+    "std_confidence": 0.26998866127817167,
+    "easy_ratio": 0.20295475530932594,
+    "hard_ratio": 0.28236380424746077,
+    "mean_acceptance_length": 1.0249307479224377,
+    "median_acceptance_length": 1.0,
+    "dip_pvalue": 0.0,
+    "gmm_best_n": 2,
+    "gmm_means": [
+      0.7963978630821316,
+      0.32893861298498006
+    ],
+    "gmm_weights": [
+      0.38451311780724345,
+      0.6154868821927566
+    ],
+    "num_tokens_evaluated": 5415,
+    "num_prompts": 25
+  },
+  "translation": {
+    "mean_acceptance": 0.19502262443438914,
+    "mean_confidence": 0.529842739786565,
+    "std_confidence": 0.28627388868987186,
+    "easy_ratio": 0.2429864253393665,
+    "hard_ratio": 0.27760180995475114,
+    "mean_acceptance_length": 0.9751131221719457,
+    "median_acceptance_length": 0.0,
+    "dip_pvalue": 0.0,
+    "gmm_best_n": 2,
+    "gmm_means": [
+      0.3256698613117212,
+      0.823262968897077
+    ],
+    "gmm_weights": [
+      0.5896790462680994,
+      0.4103209537319005
+    ],
+    "num_tokens_evaluated": 4420,
+    "num_prompts": 25
+  }
+}

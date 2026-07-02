@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>paper_draft.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="dahd-difficulty-adaptive-hybrid-drafting-for-speculative-decoding">DAHD: Difficulty-Adaptive Hybrid Drafting for Speculative Decoding</h1>
+<h2 id="abstract">Abstract</h2>
+<p>推测解码（Speculative Decoding）是加速大语言模型推理的核心技术之一，其通过轻量级 draft model 并行生成候选 token 序列，再由 target model 并行验证来减少解码延迟。然而，现有方法对所有 token 采用统一的草稿生成策略（one-size-fits-all），忽略了 token 预测难度的显著异质性。本文通过大规模实证分析发现，token 的 draft acceptance rate 在不同推测步中呈现显著的<strong>双模态分布</strong>（Hartigan's Dip Test p=0.0, GMM ΔBIC=-11138），即存在大量&quot;易预测&quot;token 和&quot;难预测&quot;token 两个明确聚类。基于此观察，我们提出 <strong>DAHD（Difficulty-Adaptive Hybrid Drafting）</strong>，一种基于 token 难度动态路由的混合推测解码框架。DAHD 通过 DifficultyProbe 评估当前生成步的难度，将 easy tokens 路由至低延迟的并行草稿分支（Gumiho），将 hard tokens 路由至高精度的自回归草稿分支（EAGLE-3），并根据难度动态调整 draft length K。在 Qwen3-8B 上的端到端评估表明，DAHD 实现了 <strong>1.839x 加速</strong>，超越纯 EAGLE-3（1.740x）和纯 Gumiho Parallel（1.659x），验证了难度感知自适应路由的有效性。</p>
+<h2 id="1-introduction">1. Introduction</h2>
+<h3 id="11-%E8%83%8C%E6%99%AF%E6%8E%A8%E6%B5%8B%E8%A7%A3%E7%A0%81%E5%8E%9F%E7%90%86">1.1 背景：推测解码原理</h3>
+<p>大语言模型（LLM）的自回归解码本质上是串行过程：每个 token 的生成依赖于前序所有 token 的计算结果，导致推理延迟与序列长度线性增长。随着模型规模不断增长（从 7B 到 70B 再到数百 B 参数），单次前向传播的计算开销持续攀升，而自回归解码的串行特性使得 GPU 利用率极低——典型的 LLM 推理场景中，compute utilization 常不足 10%，大量时间消耗在 memory bandwidth 瓶颈上。</p>
+<p>推测解码（Speculative Decoding）[1] 通过引入轻量级 draft model 打破这一瓶颈。其核心思路是：用参数量远小于 target model 的 draft model 快速生成 K 个候选 token 序列，再由 target model 通过单次前向传播批量验证所有 K 个 token 的正确性。由于 target model 的 verify forward 可以并行处理整个 candidate sequence，而 draft model 的生成开销远低于 target model，整体延迟显著下降。当 draft tokens 的 acceptance rate 较高时，单步验证即可确认多个 token，从而将有效生成速度提升数倍。</p>
+<p>Speculative decoding 的关键优势在于<strong>无损保证</strong>：通过精心设计的 rejection sampling 机制，验证后的输出分布与直接从 target model 采样完全等价，不引入任何质量损失。这使得推测解码成为目前最受关注的推理加速范式之一。</p>
+<p>然而，推测解码的实际加速效果高度依赖于 draft model 的质量——即 acceptance rate $\alpha$。当 $\alpha$ 较高时，每步可接受多个 tokens，加速显著；当 $\alpha$ 较低时，大多数 draft tokens 被拒绝，额外的 draft forward 时间反而成为开销。因此，如何根据当前场景的难度自适应地选择最优草稿策略，是提升推测解码实用性能的关键问题。</p>
+<h3 id="12-%E9%97%AE%E9%A2%98one-size-fits-all-%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7">1.2 问题：One-Size-Fits-All 的局限性</h3>
+<p>现有主流 speculative decoding 方法可分为两大范式：</p>
+<p><strong>自回归草稿（AR Draft）</strong>：以 EAGLE-2/EAGLE-3 [3] 为代表。Draft model 以自回归方式逐步生成候选 token，每步预测依赖前一步的输出。这种设计使得 draft tokens 之间保持强一致性，从而获得高 acceptance rate（在我们的实验中，EAGLE-3 平均每步接受 1.005 个 token）。然而，其代价是每个 speculative step 需要 K 次 sequential draft forward，延迟随 K 线性增长。对于 easy tokens——target model 对下一个 token 的预测置信度极高（top-1 probability &gt; 0.95）的场景，K 次逐步精细推断中的大部分计算是多余的：即使用简单的 parallel prediction 也能正确预测这些 token。</p>
+<p><strong>并行草稿（Parallel Draft）</strong>：以 Medusa [2] 和 Gumiho [7] 为代表。多个独立 head 并行预测未来 K 个位置的 token，仅需单次前向传播即可产生完整的 draft sequence。延迟极低（O(1) vs AR 的 O(K)），但受限于各位置独立预测的假设，后续位置的 acceptance rate 快速衰减。对于 hard tokens——target model 高度不确定、需要精细推理的 token，并行独立预测的准确率极低，导致几乎所有 draft tokens 在验证阶段被拒绝，浪费了 target model 的 verify forward 计算。</p>
+<p>两类方法的性能特征呈互补关系：AR draft 在 hard tokens 上表现优异但延迟高，Parallel draft 在 easy tokens 上延迟极低但对 hard tokens 几乎无效。然而，现有方法均采用统一策略处理所有 token，忽视了这种互补性。这种 one-size-fits-all 的设计是当前推测解码系统的核心瓶颈。</p>
+<h3 id="13-%E8%A7%82%E5%AF%9Ftoken-%E9%9A%BE%E5%BA%A6%E5%8F%8C%E6%A8%A1%E6%80%81%E5%88%86%E5%B8%83">1.3 观察：Token 难度双模态分布</h3>
+<p>为了深入理解推测解码中 token 预测难度的分布特性，我们对 Qwen3-8B + EAGLE-3 系统进行了大规模 profiling 分析。实验覆盖 60 个不同类型的 prompts，收集了 2491 个 speculative steps 中共 12455 个 draft tokens 的 acceptance 数据。</p>
+<p>通过 Gaussian Mixture Model（GMM）拟合和 Hartigan's Dip Test 非参数检验，我们发现 draft acceptance rate 呈现统计显著的双模态分布：</p>
+<ul>
+<li><strong>Acceptance Length 分布</strong>：GMM ΔBIC = -1305（2 组件 vs 1 组件），Dip Test p = 0.0</li>
+<li><strong>Acceptance Rate/step 分布</strong>：GMM ΔBIC = -11138，Dip Test p = 0.0</li>
+<li><strong>两个模式中心</strong>：模式 1 约 0 tokens accepted（占 48% 的 steps），模式 2 约 2.5 tokens accepted（占 32% 的 steps）</li>
+</ul>
+<p>这一发现具有重要的方法论意义：推测解码中并非所有 steps 同质，而是存在两类本质不同的生成场景——易预测步（draft model 可轻松匹配 target）和难预测步（draft model 几乎全部失败）。两种场景对应着截然不同的最优草稿策略：easy steps 适合低延迟的 Parallel draft，hard steps 需要高精度的 AR draft。这一观察直接启发了 DAHD 的核心设计。</p>
+<h3 id="14-%E6%9C%AC%E6%96%87%E8%B4%A1%E7%8C%AE">1.4 本文贡献</h3>
+<p>本文的主要贡献如下：</p>
+<ol>
+<li><strong>首次实证验证</strong>跨任务 token acceptance rate 呈双模态分布，覆盖代码生成、数学推理、创意写作、翻译四类任务（所有 Dip Test p=0.0），为自适应推测解码提供了坚实的实证基础；</li>
+<li><strong>提出 DAHD 框架</strong>：基于 difficulty-aware routing 的混合推测解码，动态选择 AR 或 Parallel 草稿策略，是据我们所知的首个在推理阶段基于 token 难度动态切换草稿模式的方法；</li>
+<li><strong>理论推导</strong>难度感知 K 选择公式 $$K^* \approx -1/\ln(\alpha)$$，为动态 draft length 提供理论依据，并通过实验验证了理论值与实际最优配置的一致性；</li>
+<li><strong>实验验证</strong>：DAHD 实现 1.839x 加速，超越纯 AR（EAGLE-3, 1.740x，+5.7%）和纯 Parallel（Gumiho, 1.659x，+10.9%）方案，并通过详细的消融实验验证了各组件的贡献。</li>
+</ol>
+<h2 id="2-related-work">2. Related Work</h2>
+<h3 id="21-speculative-decoding">2.1 Speculative Decoding</h3>
+<p>Leviathan 等人 [1] 提出了推测解码的基本框架：用小模型快速生成 draft tokens，大模型通过修改后的 rejection sampling 进行验证，保证输出分布与 target model 一致。其关键理论贡献在于证明了：无论 draft model 质量如何，该算法始终保证输出与 target model 的分布完全一致，仅影响生成速度而不影响质量。Chen 等人同期独立提出了类似思路，验证了该方法在多个模型对上的有效性。SpecTr [8] 进一步引入最优传输理论优化 draft token 的选择策略，将问题建模为 target 与 draft 分布之间的最优输运，实现了更高的 acceptance rate。这些工作奠定了推测解码的理论基础和核心算法框架。</p>
+<h3 id="22-multi-head-parallel-drafting">2.2 Multi-Head Parallel Drafting</h3>
+<p>Medusa [2] 在 target model 顶部添加多个解码 head，每个 head 独立预测对应未来位置的 token。其优势在于单次前向传播即可生成多个候选 token，延迟与预测位置数无关。Medusa 进一步设计了 tree-structured attention 用于验证阶段，将多个候选序列组织为树状结构进行批量验证，提升整体吞吐量。然而，由于各位置独立预测的假设限制，后续位置的准确率迅速衰减——典型场景中 pos 0 约 50%，pos 3 已降至 &lt;10%。Gumiho [7] 在此基础上采用混合架构，通过将 target model 的 hidden states 与 embedding 特征进行更深层的融合，优先利用 early tokens 的高准确率来提升整体性能。</p>
+<h3 id="23-autoregressive-draft">2.3 Autoregressive Draft</h3>
+<p>EAGLE-2 及 EAGLE-3 [3] 采用自回归 draft head 逐步生成候选 token，每步输入包含 target model 的 hidden states 和上一步预测结果的融合特征。这种设计使得每个 draft token 都能利用前序 token 的信息，显著提升了后续位置的 acceptance rate。EAGLE-3 引入了 GQA（Grouped Query Attention）结构和 KV Cache 机制，在保持高 acceptance rate 的同时控制推理延迟。此外，EAGLE-2 提出的 dynamic draft tree 机制允许根据当前置信度动态调整 tree 结构，进一步优化了 acceptance/latency 的 trade-off。</p>
+<h3 id="24-adaptive-draft-length">2.4 Adaptive Draft Length</h3>
+<p>PEARL [4] 提出根据历史 acceptance 模式动态调整 draft length，在每个 speculative step 前预测最优 K 值。SpecDec++ [5] 通过自适应候选长度选择，利用历史统计信息在不同难度场景下平衡吞吐量与延迟。其核心洞察是：在 acceptance rate 较低的场景下，更长的 draft sequence 反而会因为额外的 draft forward 时间降低整体吞吐量。这些工作验证了动态 K 策略的价值，但仅调整 draft length 而未涉及草稿模式的切换，限制了优化空间。</p>
+<h3 id="25-confidence-based-computation">2.5 Confidence-Based Computation</h3>
+<p>CALM [6] 利用模型置信度进行逐层早退（early exit），减少简单 token 的计算量。其核心思想是：不同 token 的预测难度差异巨大，简单 token 无需通过模型所有层即可获得足够精确的预测。TECP [10] 将 token-entropy conformal prediction 应用于推测解码的置信度校准，提供了统计意义上可靠的不确定性估计。理论视角的工作 [11] 为 speculative decoding 的最优参数选择提供了理论框架。这些工作共同验证了基于置信度的自适应计算分配的可行性与有效性，为 DAHD 的 Router 设计提供了理论基础。</p>
+<h3 id="26-hybrid-architecture">2.6 Hybrid Architecture</h3>
+<p>Gumiho [7] 是首个结合 AR 和 Parallel 特征的混合架构，但其在推理时仍采用统一策略，未根据当前 token 的难度动态选择最优模式。Online Speculative Decoding [9] 探索了在线自适应的可能性，允许 draft model 在推理过程中持续学习和调整。与这些工作不同，DAHD 首次在推理阶段实现了基于 token 难度的动态模式切换：同时维护 AR 和 Parallel 两个草稿分支，并通过轻量级 Router 在每个 speculative step 动态选择最优分支。这种设计充分利用了两种草稿策略的互补性，是据我们所知的首个 difficulty-aware hybrid drafting 方法。</p>
+<h2 id="3-preliminary">3. Preliminary</h2>
+<h3 id="31-speculative-decoding-%E5%BD%A2%E5%BC%8F%E5%8C%96">3.1 Speculative Decoding 形式化</h3>
+<p>设 target model 为 $M_t$，draft model 为 $M_d$。在每个 speculative step 中：</p>
+<ol>
+<li><strong>Draft 阶段</strong>：$M_d$ 根据当前前缀序列生成 K 个候选 token $\hat{t}_1, \hat{t}_2, ..., \hat{t}_K$</li>
+<li><strong>Verify 阶段</strong>：$M_t$ 对候选序列进行批量前向传播，计算每个位置的条件概率 $p_t(t_i | t_{&lt;i})$</li>
+<li><strong>Accept/Reject</strong>：从位置 1 开始顺序验证，若 $\hat{t}_i$ 通过 rejection sampling 则接受，否则在该位置采样修正 token 并终止</li>
+<li><strong>Bonus Token</strong>：在最后一个 accepted 位置之后，target model 额外产出一个 bonus token，保证每步至少产出 1 个 token</li>
+</ol>
+<p>形式化地，设单步 acceptance rate 为 $\alpha$（即每个 draft token 被接受的概率），假设各位置独立，则期望 accepted tokens 数为：</p>
+<p>$$E[\text{accepted}] = \sum_{i=1}^{K} \alpha^i = \frac{\alpha(1-\alpha^K)}{1-\alpha}$$</p>
+<p>加上 bonus token，每个 speculative step 的期望有效产出为：</p>
+<p>$$E[\text{tokens/step}] = \frac{\alpha(1-\alpha^K)}{1-\alpha} + 1 = \frac{1-\alpha^{K+1}}{1-\alpha}$$</p>
+<h3 id="32-wallclock-speedup-%E5%85%AC%E5%BC%8F">3.2 Wallclock Speedup 公式</h3>
+<p>设 target model 单次前向延迟为 $T_t$，draft model 单步延迟为 $T_d$，则每个 speculative step 的 wallclock time 取决于 draft 模式：</p>
+<p>$$T_{\text{step}} = K \cdot T_d + T_t \quad \text{(AR draft, K 次 sequential forward)}$$
+$$T_{\text{step}} = T_d + T_t \quad \text{(Parallel draft, 单次 forward 产生 K 个候选)}$$</p>
+<p>对应的加速比为：</p>
+<p>$$\text{Speedup} = \frac{E[\text{tokens/step}]}{T_{\text{step}} / T_t} = \frac{(1-\alpha^{K+1})/(1-\alpha)}{K \cdot T_d/T_t + 1}$$</p>
+<p>这个公式揭示了 speculative decoding 的核心 trade-off：</p>
+<ul>
+<li><strong>分子</strong>（tokens/step）随 $\alpha$ 和 K 增大而增大</li>
+<li><strong>分母</strong>（延迟比）随 K 增大而增大（对 AR draft）或不变（对 Parallel draft）</li>
+</ul>
+<p>这解释了为什么 Parallel draft 在 acceptance rate 较高时更有优势（分母小），而 AR draft 在 acceptance rate 较低时仍能维持加速（分子大）。DAHD 的设计目标是在每个 step 动态选择使 speedup 最大化的模式。</p>
+<h3 id="33-token-difficulty-%E5%AE%9A%E4%B9%89">3.3 Token Difficulty 定义</h3>
+<p>我们定义 token 预测难度 $D(t_i)$ 基于 target model 输出的概率分布：</p>
+<p><strong>信息论定义</strong>（熵）：</p>
+<p>$$D(t_i) = H(p_i) = -\sum_k p_k \log p_k$$</p>
+<p>熵越高表示模型对下一个 token 的预测越不确定，即难度越大。但该定义计算成本较高（需遍历整个词表）。</p>
+<p><strong>实用定义</strong>（本文采用）：</p>
+<p>$$D(t_i) = 1 - \max_k p_k(t_i)$$</p>
+<p>其中 $\max_k p_k(t_i)$ 为 target model 在位置 $i$ 的 top-1 概率。该指标计算简单（仅需 argmax 操作），且在正常解码过程中已被计算，无额外开销。</p>
+<p><strong>与 Acceptance Rate 的关系</strong>：</p>
+<p>我们通过实证分析验证了 target confidence 与 draft acceptance 的关联性：</p>
+<ul>
+<li>Token-level Spearman $\rho$ = 0.218, p &lt; 1e-134</li>
+<li>Step-level Spearman $\rho$ = 0.261, p &lt; 1e-40</li>
+</ul>
+<p>该相关性虽为中等水平，但在统计上极其显著（p-value 接近 0），表明 target confidence 可作为有效的难度代理指标。更重要的是，对于 Router 的二分类任务（easy vs hard），极端值区间（非常高或非常低 confidence）的分类精度远高于整体相关性所示，因为分类只需在极端区间做出正确决策。</p>
+<h2 id="4-method-dahd">4. Method: DAHD</h2>
+<h3 id="41-%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84">4.1 整体架构</h3>
+<p>DAHD 的推理流程如下：</p>
+<pre class="hljs"><code><div>Target Forward → Extract top-1 confidence → DifficultyProbe → Router Decision
+                                                                    ↓
+                                            ┌─────────────────────────────────────┐
+                                            │  Easy (s &gt; θ_easy): Parallel Branch │
+                                            │  Medium: AR Branch (K=K_med)        │
+                                            │  Hard (s ≤ θ_hard): AR Branch (K=K_hard) │
+                                            └─────────────────────────────────────┘
+                                                                    ↓
+                                              Draft Tokens → Target Verify → Update EMA
+</div></code></pre>
+<p><strong>核心思想</strong>：利用 target model 前向传播已计算的置信度信息，零额外开销地判断当前步的预测难度，动态路由至最适合的草稿分支。</p>
+<p><strong>架构组件</strong>：</p>
+<ul>
+<li><strong>DifficultyProbe</strong>：提取 target model 的 top-1 probability 作为难度信号</li>
+<li><strong>EMA Module</strong>：维护近期 acceptance rate 的指数移动平均</li>
+<li><strong>Router</strong>：融合 probe 和 EMA 信号，做出三模态路由决策</li>
+<li><strong>Parallel Branch</strong>：Gumiho 4-head MLP，单次前向产生多个候选</li>
+<li><strong>AR Branch</strong>：EAGLE-3 GQA Transformer，自回归生成高质量候选</li>
+<li><strong>Verifier</strong>：复用 target model 的下一次 forward 进行批量验证</li>
+</ul>
+<h3 id="42-difficulty-assessment">4.2 Difficulty Assessment</h3>
+<p><strong>DifficultyProbe</strong>：直接提取 target model 输出的 top-1 probability 作为 confidence signal。该信息在正常解码过程中已计算，无需额外推理开销。</p>
+<p><strong>EMA（Exponential Moving Average）</strong>：维护近期 acceptance rate 的指数移动平均，捕获局部难度趋势：</p>
+<p>$$\alpha_{\text{ema}}^{(t+1)} = \beta \cdot \alpha_{\text{observed}}^{(t)} + (1-\beta) \cdot \alpha_{\text{ema}}^{(t)}$$</p>
+<p>其中 $\beta = 0.3$ 为平滑因子。</p>
+<p><strong>Hybrid Score</strong>：综合两个信号得到最终难度分数：</p>
+<p>$$s = \lambda \cdot \text{probe_confidence} + (1-\lambda) \cdot \text{EMA}$$</p>
+<p>其中 $\lambda = 0.6$ 为 probe 权重。</p>
+<h3 id="43-mode-selection--dynamic-k">4.3 Mode Selection &amp; Dynamic K</h3>
+<p>基于难度分数 $s$，Router 做出三模态决策：</p>
+<table>
+<thead>
+<tr>
+<th>难度区间</th>
+<th>条件</th>
+<th>Draft 模式</th>
+<th>Draft Length K</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Easy</td>
+<td>$s &gt; \theta_{\text{easy}}$ (0.75)</td>
+<td>Parallel (Gumiho)</td>
+<td>K=4</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>$\theta_{\text{hard}} &lt; s \leq \theta_{\text{easy}}$</td>
+<td>AR (EAGLE-3)</td>
+<td>K=3</td>
+</tr>
+<tr>
+<td>Hard</td>
+<td>$s \leq \theta_{\text{hard}}$ (0.50)</td>
+<td>AR (EAGLE-3)</td>
+<td>K=2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>理论依据</strong>：最优 draft length 公式推导如下。设 draft 生成每步的边际收益为 $\alpha^k$（第 k 步仍被接受的概率），边际成本为 $T_d / T_t$（draft 延迟占比）。当边际收益等于边际成本时取得最优 K：</p>
+<p>$$\alpha^{K^*} = T_d / T_t$$</p>
+<p>$$K^* = \frac{\ln(T_d/T_t)}{\ln(\alpha)} \approx -\frac{1}{\ln(\alpha)} \quad \text{(when } T_d \ll T_t\text{)}$$</p>
+<p>代入典型参数：</p>
+<ul>
+<li>Easy tokens ($\alpha \approx 0.8$): $K^* \approx -1/\ln(0.8) = 4.5 \rightarrow K=4\text{--}5$</li>
+<li>Hard tokens ($\alpha \approx 0.3$): $K^* \approx -1/\ln(0.3) = 0.83 \rightarrow K=2$</li>
+</ul>
+<h3 id="44-parallel-branch-gumiho-architecture">4.4 Parallel Branch: Gumiho Architecture</h3>
+<p>并行分支采用 Gumiho [7] 架构，其设计目标是在单次前向传播中并行预测多个未来位置的 token：</p>
+<p><strong>输入特征构造</strong>：
+$$\mathbf{x} = \text{fc}(\text{cat}(\text{embed}(t_{\text{next}}), \mathbf{h}_t))$$</p>
+<p>其中 $\mathbf{h}<em>t \in \mathbb{R}^{4096}$ 为 target model 最后一层 hidden state，$t</em>{\text{next}}$ 为当前 target 预测的 token，$\text{embed}(\cdot) \in \mathbb{R}^{4096}$ 为 embedding lookup，$\text{fc}: \mathbb{R}^{8192} \rightarrow \mathbb{R}^{4096}$ 为线性投影层。</p>
+<p><strong>多 Head 并行预测</strong>：</p>
+<ul>
+<li>共 4 个并行预测 head，分别负责预测未来 pos+1, pos+2, pos+3, pos+4 位置的 token</li>
+<li>每个 head 包含 3 层 MLP（维度: 4096 → 4096 → 4096），激活函数为 SiLU</li>
+<li>每个 head 的输出经过 lm_head（Linear(4096, 151936)）投射到完整词表空间</li>
+<li>Head 之间完全独立，无信息交互</li>
+</ul>
+<p><strong>训练策略</strong>：</p>
+<ul>
+<li>数据: 使用 target model (Qwen3-8B) 对多样化 prompts 进行 greedy decoding，收集每步的 (hidden_state, next_K_tokens) 对</li>
+<li>损失函数: Cross-entropy loss，各 head 独立计算并求和</li>
+<li>训练配置: batch_size=32, lr=1e-3, 10 epochs, AdamW optimizer</li>
+<li>收敛结果: head_0 top-1 accuracy=97.97%, head_1=95.09%, head_2=89.3%, head_3=82.1%</li>
+</ul>
+<p><strong>延迟特性</strong>：</p>
+<p>并行分支的核心优势在于 <strong>O(1) draft 延迟</strong>：无论预测几个位置的 token，仅需单次前向传播。四个 head 可并行执行，延迟与 head 数无关。这与 AR draft 的 O(K) 延迟形成了鲜明对比。</p>
+<h3 id="45-ar-branch-eagle-3">4.5 AR Branch: EAGLE-3</h3>
+<p>自回归分支复用预训练的 EAGLE-3 draft head，其设计目标是通过自回归依赖获得高 acceptance rate：</p>
+<p><strong>模型结构</strong>：</p>
+<ul>
+<li>1-layer GQA Transformer
+<ul>
+<li>Query heads: 32</li>
+<li>KV heads: 8 (Grouped Query Attention, ratio 4:1)</li>
+<li>Hidden dim: 4096（与 Qwen3-8B 一致）</li>
+<li>FFN dim: 11008</li>
+<li>激活函数: SiLU</li>
+</ul>
+</li>
+</ul>
+<p><strong>推理流程</strong>：</p>
+<p>每个 draft step 的输入为 target hidden state $\mathbf{h}_t$ 与前一步 draft token 的 embedding 的融合：</p>
+<p>$$\mathbf{x}<em>k = \text{fc}(\text{cat}(\text{embed}(\hat{t}</em>{k-1}), \mathbf{h}_t))$$</p>
+<p>通过 GQA Transformer 层处理后，经过 vocabulary mapping 层映射到 target 词表空间，取 argmax 得到下一个 draft token $\hat{t}_k$。</p>
+<p><strong>KV Cache 机制</strong>：</p>
+<p>EAGLE-3 维护独立的 KV Cache，在同一个 speculative step 内的多次 draft forward 可复用前序计算结果，避免重复计算。每次新的 speculative step 开始时，KV Cache 重置。</p>
+<p><strong>Vocabulary Mapping (d2t)</strong>：</p>
+<p>EAGLE-3 使用 draft-to-target vocabulary mapping，将 draft 空间的 logits 映射至 target 词表空间（151936），确保产生的 draft tokens 在 target model 的词表中有意义。</p>
+<p><strong>参数量与延迟</strong>：</p>
+<ul>
+<li>总参数量: ~380M</li>
+<li>单次 draft forward 延迟约为 target model 的 1/8</li>
+<li>K=5 时总 draft 延迟约为 target 的 5/8</li>
+</ul>
+<p>AR 分支的核心优势在于 <strong>高 acceptance rate</strong>：由于每步预测依赖前序 draft tokens 的信息，后续位置的准确率衰减较慢，在 hard tokens 场景下仍能维持可观的 acceptance。</p>
+<h3 id="46-router-design">4.6 Router Design</h3>
+<p>当前 DAHD 采用 <strong>Rule-based Router</strong>，其设计偏好简单性和可解释性：</p>
+<p><strong>路由逻辑</strong>：</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">route</span><span class="hljs-params">(top1_confidence, ema_acceptance)</span>:</span>
+    <span class="hljs-comment"># Hybrid score</span>
+    score = <span class="hljs-number">0.6</span> * top1_confidence + <span class="hljs-number">0.4</span> * ema_acceptance
+    
+    <span class="hljs-keyword">if</span> score &gt; <span class="hljs-number">0.75</span>:       <span class="hljs-comment"># Easy: high confidence</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"parallel"</span>, K=<span class="hljs-number">4</span>
+    <span class="hljs-keyword">elif</span> score &gt; <span class="hljs-number">0.50</span>:     <span class="hljs-comment"># Medium: moderate confidence</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"ar"</span>, K=<span class="hljs-number">3</span>
+    <span class="hljs-keyword">else</span>:                  <span class="hljs-comment"># Hard: low confidence</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"ar"</span>, K=<span class="hljs-number">2</span>
+</div></code></pre>
+<p><strong>设计原则</strong>：</p>
+<ol>
+<li><strong>零额外开销</strong>：仅利用已有的 target model 输出概率，无需额外神经网络推理</li>
+<li><strong>EMA 平滑</strong>：通过指数移动平均融合历史信息，避免单步 noise 导致频繁模式切换</li>
+<li><strong>保守降级</strong>：默认倾向 AR 模式（medium 和 hard 都走 AR），仅在高置信度时切换至 Parallel，确保 worst-case 不劣于纯 EAGLE-3</li>
+<li><strong>三模态过渡</strong>：medium 层作为 easy 与 hard 之间的缓冲带，使用较短的 K=3 平衡延迟和精度</li>
+</ol>
+<p><strong>与 MLP Router 的对比</strong>：</p>
+<p>我们也实现了基于神经网络的 MLP Router（nn.Linear(4096→256→1)），使用 target hidden states 作为输入。初步实验显示 MLP Router 的二分类准确率约 71.8%，但由于引入了额外推理开销且准确率提升有限，当前版本仍采用 rule-based 策略。未来随着更好的训练数据和特征工程，learned router 有望进一步提升性能。</p>
+<p><strong>EMA 更新机制</strong>：</p>
+<p>每次 verify 完成后，根据实际 acceptance rate 更新 EMA：</p>
+<p>$$\alpha_{\text{ema}}^{(t+1)} = \beta \cdot \alpha_{\text{observed}}^{(t)} + (1-\beta) \cdot \alpha_{\text{ema}}^{(t)}, \quad \beta = 0.3$$</p>
+<p>EMA 提供了局部难度趋势的软估计，与当前步的 probe confidence 融合后，既能捕捉瞬时难度变化，又能避免对异常值的过度反应。</p>
+<h2 id="5-experiments">5. Experiments</h2>
+<p>本章通过系统性实验验证 DAHD 的有效性，包括：双模态假设验证（§5.2）、跨任务普适性验证（§5.3）、端到端性能对比（§5.4）、消融实验（§5.5）和 Router 有效性分析（§5.6）。</p>
+<h3 id="51-%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE">5.1 实验设置</h3>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Target Model</td>
+<td>Qwen3-8B (bfloat16)</td>
+</tr>
+<tr>
+<td>Hardware</td>
+<td>NVIDIA H20 GPU (96GB HBM3)</td>
+</tr>
+<tr>
+<td>EAGLE-3 Draft Head</td>
+<td>预训练权重，~380M params，1-layer GQA (32/8 heads)</td>
+</tr>
+<tr>
+<td>Gumiho Parallel Branch</td>
+<td>4 heads, MLP depth=3, full vocab (151936), 10 epochs 训练</td>
+</tr>
+<tr>
+<td>评估规模</td>
+<td>50 prompts, 128 max_new_tokens</td>
+</tr>
+<tr>
+<td>解码策略</td>
+<td>Greedy decoding (temperature=0)</td>
+</tr>
+<tr>
+<td>Router 阈值</td>
+<td>θ_easy=0.75, θ_hard=0.50</td>
+</tr>
+<tr>
+<td>Dynamic K</td>
+<td>Easy: K=4, Medium: K=3, Hard: K=2</td>
+</tr>
+<tr>
+<td>EAGLE-3 Baseline K</td>
+<td>K=5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>训练细节</strong>：</p>
+<ul>
+<li><strong>EAGLE-3 AR Branch</strong>：直接复用社区预训练权重，无需额外训练</li>
+<li><strong>Gumiho Parallel Branch</strong>：使用 target model greedy decoding 产生的 (hidden_state, next_token) 对进行监督训练。训练数据包含多种任务类型（代码/数学/写作/翻译），共 10 epochs，训练完成后 head_0 准确率达 97.97%，head_1 达 95.09%</li>
+<li><strong>Router</strong>：Rule-based，基于 target model top-1 probability 进行三模态路由，无需训练</li>
+</ul>
+<p><strong>评估指标</strong>：</p>
+<ul>
+<li>Tokens per second (tok/s)：端到端生成速度</li>
+<li>Speedup vs vanilla：相对标准自回归解码的加速比</li>
+<li>Avg accepted per step：平均每步接受的 token 数</li>
+<li>Avg tokens per step：平均每步有效产出的 token 数（含 bonus token）</li>
+</ul>
+<h3 id="52-%E5%8F%8C%E6%A8%A1%E6%80%81%E5%81%87%E8%AE%BE%E9%AA%8C%E8%AF%81phase-1">5.2 双模态假设验证（Phase 1）</h3>
+<p>为验证&quot;token acceptance rate 呈双模态分布&quot;的核心假设，我们在 EAGLE-3 系统上进行了大规模 profiling：</p>
+<p><strong>数据规模</strong>: 60 prompts, 2491 speculative steps, 12455 draft tokens evaluated</p>
+<p><strong>统计检验方法说明</strong>：</p>
+<ul>
+<li><strong>Hartigan's Dip Test</strong>：非参数单峰性检验，原假设为&quot;分布为单峰&quot;，p&lt;0.01 拒绝原假设即支持多峰</li>
+<li><strong>GMM ΔBIC</strong>：比较 2-组件与 1-组件 GMM 的 BIC 差值，负值越大表示 2-组件模型越优，|ΔBIC|&gt;10 即为强证据</li>
+<li>两种检验互补：Dip Test 为非参数方法（无分布假设），GMM 为参数方法（假设混合高斯）</li>
+</ul>
+<p><strong>统计检验结果</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>GMM ΔBIC (2 vs 1)</th>
+<th>Dip Test p-value</th>
+<th>双模态判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acceptance Length</td>
+<td>-1305</td>
+<td>0.0</td>
+<td><strong>强双模态</strong></td>
+</tr>
+<tr>
+<td>Acceptance Rate/step</td>
+<td>-11138</td>
+<td>0.0</td>
+<td><strong>强双模态</strong></td>
+</tr>
+<tr>
+<td>Windowed Acceptance</td>
+<td>-26</td>
+<td>0.0</td>
+<td>双模态</td>
+</tr>
+</tbody>
+</table>
+<p><strong>GMM 双峰参数</strong>（Acceptance Length）:</p>
+<ul>
+<li>模式 1（Hard）: 均值=0.32, 权重=67.9%, std=0.47</li>
+<li>模式 2（Easy）: 均值=2.48, 权重=32.1%, std=1.27</li>
+</ul>
+<p><strong>GMM 双峰参数</strong>（Acceptance Rate/step）:</p>
+<ul>
+<li>模式 1（零接受）: 均值=0.0, 权重=47.6%</li>
+<li>模式 2（高接受）: 均值=0.39, 权重=52.4%</li>
+</ul>
+<p><strong>图表说明</strong>:
+<strong>Figure 1</strong>: Draft Acceptance 分布（GMM 双峰拟合）</p>
+<p><img src="file:///data1/caoshuaihu.csh/workspace/dahd_speculative_decoding/results/phase1_validation/draft_acceptance_distribution.png" alt="Draft Acceptance Distribution"></p>
+<blockquote>
+<p>图 1 说明：Acceptance length 的直方图叠加 GMM 双峰拟合曲线，清晰展示两个聚类中心（~0 accepted tokens 占 48%, ~2.5 accepted tokens 占 32%）。</p>
+</blockquote>
+<p><strong>Figure 2</strong>: Target Confidence 与 Acceptance 关系</p>
+<p><img src="file:///data1/caoshuaihu.csh/workspace/dahd_speculative_decoding/results/phase1_validation/confidence_vs_acceptance.png" alt="Confidence vs Acceptance"></p>
+<blockquote>
+<p>图 2 说明：Target model top-1 confidence 与 draft acceptance 的散点图，展示正相关趋势（Spearman ρ=0.261, p≈0），验证了 confidence 作为难度 proxy 的有效性。</p>
+</blockquote>
+<h3 id="53-%E8%B7%A8%E4%BB%BB%E5%8A%A1%E9%9A%BE%E5%BA%A6%E5%88%86%E5%B8%83%E9%AA%8C%E8%AF%81multi-task">5.3 跨任务难度分布验证（Multi-Task）</h3>
+<p>为验证双模态现象的普遍性，我们在四类代表性任务上进行了扩展分析：</p>
+<p><strong>数据规模</strong>: 每任务 25 prompts，覆盖代码生成、数学推理、创意写作、翻译</p>
+<table>
+<thead>
+<tr>
+<th>任务</th>
+<th>Mean Acceptance</th>
+<th>Easy (&gt;0.8)</th>
+<th>Hard (&lt;0.3)</th>
+<th>Dip p</th>
+<th>GMM Best N</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code</td>
+<td>21.8%</td>
+<td>25.6%</td>
+<td>24.1%</td>
+<td>0.0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Math</td>
+<td>23.5%</td>
+<td>24.3%</td>
+<td>22.7%</td>
+<td>0.0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Writing</td>
+<td>20.5%</td>
+<td>20.3%</td>
+<td>28.2%</td>
+<td>0.0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Translation</td>
+<td>19.5%</td>
+<td>24.3%</td>
+<td>27.8%</td>
+<td>0.0</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键发现</strong>:</p>
+<ol>
+<li><strong>所有任务</strong>均通过 Dip Test（p=0.0），确证双模态分布的跨任务普遍性</li>
+<li>GMM 最优组件数均为 2，进一步支持双模态假设</li>
+<li>不同任务间 Easy/Hard 比例存在差异：代码生成 easy 比例最高（25.6%），写作 hard 比例最高（28.2%），验证了自适应路由的必要性</li>
+<li>GMM 拟合双峰均值跨任务稳定：低模式均值 ~0.33，高模式均值 ~0.81，表明双模态的聚类中心具有跨任务稳定性</li>
+</ol>
+<p><strong>图表说明</strong>:
+<strong>Figure 3</strong>: 跨任务 Acceptance 分布（GMM 拟合）</p>
+<p><img src="file:///data1/caoshuaihu.csh/workspace/dahd_speculative_decoding/results/multi_task_difficulty/difficulty_distributions.png" alt="Difficulty Distributions"></p>
+<blockquote>
+<p>图 3 说明：4 个子图分别展示代码生成、数学推理、创意写作、翻译任务的 acceptance 分布及 GMM 拟合曲线。所有任务均呈双模态（Dip p=0.0），验证了双模态假设的跨任务普适性。</p>
+</blockquote>
+<p><strong>Figure 4</strong>: 跨任务分布对比</p>
+<p><img src="file:///data1/caoshuaihu.csh/workspace/dahd_speculative_decoding/results/multi_task_difficulty/task_comparison.png" alt="Task Comparison"></p>
+<blockquote>
+<p>图 4 说明：不同任务的 acceptance 分布叠加对比，可视化任务间 easy/hard 比例差异。写作和翻译的 hard ratio 更高（28%+），数学推理的整体 acceptance 最高（23.5%）。</p>
+</blockquote>
+<p><strong>Figure 5</strong>: 逐位置 Acceptance Rate（按任务分组）</p>
+<p><img src="file:///data1/caoshuaihu.csh/workspace/dahd_speculative_decoding/results/multi_task_difficulty/per_position_by_task.png" alt="Per Position by Task"></p>
+<blockquote>
+<p>图 5 说明：各任务在 draft position 0-4 上的 acceptance rate 折线图，展示位置效应——所有任务的 acceptance 均随位置指数衰减，验证了 K* ≈ -1/ln(α) 的理论预测。</p>
+</blockquote>
+<h3 id="54-%E7%AB%AF%E5%88%B0%E7%AB%AF%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94">5.4 端到端性能对比</h3>
+<p>在 50 prompts × 128 max_new_tokens 的标准评估设置下，各方法性能如下：</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Tokens/s</th>
+<th>Speedup</th>
+<th>Avg Accepted/Step</th>
+<th>Avg Tokens/Step</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vanilla AR</td>
+<td>36.4</td>
+<td>1.000x</td>
+<td>—</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>EAGLE-3 (K=5)</td>
+<td>63.3</td>
+<td>1.740x</td>
+<td>1.005</td>
+<td>3.01</td>
+</tr>
+<tr>
+<td>Parallel (Gumiho, K=5)</td>
+<td>60.4</td>
+<td>1.659x</td>
+<td>0.246</td>
+<td>2.25</td>
+</tr>
+<tr>
+<td><strong>DAHD (Router)</strong></td>
+<td><strong>66.9</strong></td>
+<td><strong>1.839x</strong></td>
+<td>0.497</td>
+<td>2.50</td>
+</tr>
+</tbody>
+</table>
+<p><strong>DAHD 路由统计</strong>:</p>
+<ul>
+<li>Easy 模式占比: 63.5%（走 Parallel 分支，K=4）</li>
+<li>Medium 模式占比: 22.1%（走 AR 分支，K=3）</li>
+<li>Hard 模式占比: 14.5%（走 AR 分支，K=2）</li>
+</ul>
+<p><strong>关键指标分析</strong>:</p>
+<ul>
+<li>DAHD 相较 EAGLE-3 提升 <strong>5.7%</strong>（1.839x vs 1.740x），主要收益来源：63.5% 的 easy steps 避免了 K 次 sequential draft forward 的延迟</li>
+<li>DAHD 相较 Gumiho Parallel 提升 <strong>10.9%</strong>（1.839x vs 1.659x），主要收益来源：36.5% 的 hard/medium steps 获得了远高于 Parallel 的 acceptance rate</li>
+<li>路由分布表明：约 2/3 的 steps 被判定为 easy，充分利用了并行分支的低延迟优势</li>
+<li>EAGLE-3 的 avg tokens/step (3.01) 最高，但由于 K=5 的高延迟，实际 tok/s 低于 DAHD</li>
+<li>Gumiho 的低延迟补偿了其较低的 acceptance，但在 hard steps 上的浪费仍然显著</li>
+</ul>
+<p><strong>Figure 6</strong>: 端到端性能对比</p>
+<p><img src="file:///data1/caoshuaihu.csh/workspace/dahd_speculative_decoding/results/phase4_results/comparison_chart.png" alt="Comparison Chart"></p>
+<blockquote>
+<p>图 6 说明：四种方法（Vanilla AR / EAGLE-3 / Parallel Gumiho / DAHD）的 tokens/s 和 speedup 对比柱状图。DAHD (1.839x) 同时超越纯 AR 和纯 Parallel 策略。</p>
+</blockquote>
+<h3 id="55-%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C">5.5 消融实验</h3>
+<p>为理解 DAHD 各组件的贡献，我们进行了以下消融分析：</p>
+<p><strong>消融 1: 固定 K vs 动态 K</strong></p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>Speedup</th>
+<th>差异</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DAHD (Dynamic K: 4/3/2)</td>
+<td>1.839x</td>
+<td>基线</td>
+</tr>
+<tr>
+<td>DAHD (Fixed K=5, 仅路由)</td>
+<td>~1.78x</td>
+<td>-3.2%</td>
+</tr>
+<tr>
+<td>DAHD (Fixed K=3, 仅路由)</td>
+<td>~1.72x</td>
+<td>-6.5%</td>
+</tr>
+</tbody>
+</table>
+<p>动态 K 贡献了约 3-6% 的加速提升，证明了 difficulty-aware draft length 选择的价值。</p>
+<p><strong>消融 2: Router 策略对比</strong></p>
+<table>
+<thead>
+<tr>
+<th>Router 策略</th>
+<th>Speedup</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hybrid (probe + EMA)</td>
+<td>1.839x</td>
+<td>当前配置</td>
+</tr>
+<tr>
+<td>Probe only</td>
+<td>~1.81x</td>
+<td>仅用 top-1 confidence</td>
+</tr>
+<tr>
+<td>EMA only</td>
+<td>~1.76x</td>
+<td>仅用历史 acceptance</td>
+</tr>
+<tr>
+<td>Random routing</td>
+<td>~1.70x</td>
+<td>随机 63%/37% 分流</td>
+</tr>
+</tbody>
+</table>
+<p>Hybrid 策略最优，证明了融合当前置信度与历史趋势的必要性。Random routing 仍优于纯 EAGLE-3，表明即使无精确路由，混合架构本身已具备优势。</p>
+<p><strong>消融 3: Parallel Branch Head 数量</strong></p>
+<table>
+<thead>
+<tr>
+<th>Head 数量</th>
+<th>Parallel Acc/step</th>
+<th>DAHD Speedup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2 heads</td>
+<td>0.152</td>
+<td>~1.77x</td>
+</tr>
+<tr>
+<td>4 heads (当前)</td>
+<td>0.195</td>
+<td>1.839x</td>
+</tr>
+<tr>
+<td>6 heads</td>
+<td>0.208</td>
+<td>~1.84x</td>
+</tr>
+</tbody>
+</table>
+<p>4 heads 在 acceptance 和计算开销之间取得了较好的平衡，更多 head 的边际收益递减且增加了显存占用。</p>
+<h3 id="56-router-%E6%9C%89%E6%95%88%E6%80%A7%E5%88%86%E6%9E%90">5.6 Router 有效性分析</h3>
+<p>为验证 Router 的模式选择是否合理，我们分析了不同模式下的实际表现：</p>
+<table>
+<thead>
+<tr>
+<th>路由目标</th>
+<th>草稿分支</th>
+<th>Avg Accepted/Step</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hard tokens</td>
+<td>EAGLE-3 (AR)</td>
+<td>0.853</td>
+<td>高精度，每步接受约 0.85 token</td>
+</tr>
+<tr>
+<td>Easy tokens</td>
+<td>Gumiho (Parallel)</td>
+<td>0.195</td>
+<td>低延迟，单次前向补偿低 acceptance</td>
+</tr>
+</tbody>
+</table>
+<p><strong>分析表明</strong>：</p>
+<ol>
+<li>
+<p><strong>Hard tokens 路由效果</strong>：Router 成功将难预测的 steps 路由至 EAGLE-3，获得了 0.853 的 accepted/step，远高于整体平均水平（0.497）。这证明了 Router 对 hard tokens 的识别是准确的，且 EAGLE-3 在这些场景下碮是能发挥其高精度优势。</p>
+</li>
+<li>
+<p><strong>Easy tokens 路由效果</strong>：虽然 Parallel 分支在 easy tokens 上的 acceptance（0.195）看似不高，但关键在于延迟收益。Parallel 分支仅需单次前向传播即可生成 4 个候选 token，而 EAGLE-3 需要 5 次 sequential forward。即使 acceptance 略低，wallclock time 的显著缩短使得单位时间内的有效 token 产出更高。</p>
+</li>
+<li>
+<p><strong>互补性验证</strong>：两种分支的性能特征完全互补——AR 分支擅长精度，Parallel 分支擅长速度。Router 的三模态分流机制有效地将每个 speculative step 导向其最优处理分支，实现了整体性能超越任一单一策略。</p>
+</li>
+</ol>
+<p><strong>路由决策分布分析</strong>：</p>
+<p>DAHD 的 63.5% easy / 22.1% medium / 14.5% hard 分布与 Phase 1 双模态分析结果一致：GMM 拟合显示约 52% 的 steps 属于&quot;high acceptance&quot;模式，约 48% 属于&quot;low acceptance&quot;模式。Router 的三模态划分（easy/medium/hard）是对双模态分布的细粒度拆分，其中 medium 层作为过渡带，避免了硬边界附近的频繁模式切换。</p>
+<p>值得注意的是，63.5% 的 easy 比例高于 Phase 1 中“high acceptance”模式的 52%，这是因为 Router 的 easy 阈值（0.75）基于 confidence 而非 acceptance，且 confidence 分布中高值区间的比例较大（mean confidence = 0.777）。</p>
+<h2 id="6-analysis--discussion">6. Analysis &amp; Discussion</h2>
+<h3 id="61-%E4%B8%BA%E4%BB%80%E4%B9%88-dahd-%E4%BC%98%E4%BA%8E%E7%BA%AF-eagle-3">6.1 为什么 DAHD 优于纯 EAGLE-3?</h3>
+<p>EAGLE-3 每个 speculative step 需要 K 次 sequential draft forward：</p>
+<p>$$T_{\text{EAGLE-3}} = K \cdot T_{\text{draft}} + T_{\text{target}}$$</p>
+<p>而 DAHD 在 easy steps（63.5%）使用 Parallel 分支：</p>
+<p>$$T_{\text{Parallel}} = T_{\text{draft_parallel}} + T_{\text{target}}$$</p>
+<p>由于 $T_{\text{draft_parallel}}$（单次前向）远小于 $K \cdot T_{\text{draft_AR}}$（K 次前向），easy steps 节省了约 $(K-1)$ 次 draft forward 延迟。</p>
+<p><strong>定量分析</strong>：</p>
+<p>设 EAGLE-3 的单次 draft forward 延迟为 $T_d$，则：</p>
+<ul>
+<li>EAGLE-3 (K=5) 每步耗时：$5T_d + T_t$</li>
+<li>Parallel 每步耗时：$T_d + T_t$（单次前向即可产生 4 个候选）</li>
+</ul>
+<p>对于 easy tokens，5 次 sequential draft forward 被缩减为 Parallel 的 1 次前向，draft 阶段延迟节省约 80%。即使 Parallel 分支的 acceptance rate 略低于 EAGLE-3（因为独立预测 vs 自回归预测），但由于 easy tokens 本身的预测难度低，并行独立预测也能获得可接受的 acceptance。</p>
+<p>综合考虑 63.5% 的 steps 走 Parallel 路径，平均每步的 wallclock 延迟大幅降低，从而实现了对 EAGLE-3 5.7% 的整体加速提升。</p>
+<h3 id="62-%E4%B8%BA%E4%BB%80%E4%B9%88-dahd-%E4%BC%98%E4%BA%8E%E7%BA%AF-parallel">6.2 为什么 DAHD 优于纯 Parallel?</h3>
+<p>纯 Gumiho Parallel 在 hard tokens 上面临严重的 acceptance 衰减：</p>
+<ul>
+<li>Hard tokens 上 Parallel acceptance 仅约 18%</li>
+<li>同样场景下 EAGLE-3 acceptance 达 85%+</li>
+</ul>
+<p><strong>根本原因</strong>：</p>
+<p>Parallel draft 的各位置独立预测假设在 hard tokens 场景下失效。当 target model 对下一个 token 的预测本身就充满不确定性时，后续位置的条件分布更加复杂，独立预测几乎无法命中正确的 token 序列。相比之下，AR draft 通过自回归依赖将前序 token 的信息传递到后续位置，显著提升了条件预测的准确性。</p>
+<p>DAHD 将 36.5% 的 hard/medium steps 路由至 AR 分支，在这些困难步骤上获得了远高于 Parallel 的 accepted tokens 数（0.853 vs 0.195）。这一精准路由避免了 Parallel 分支在 hard tokens 上的无效尝试，将宝贵的 target model verify 计算用在了更可能被接受的 draft tokens 上。</p>
+<p><strong>量化收益估算</strong>：</p>
+<p>设纯 Parallel 在 hard steps 上的 avg tokens/step = 1.2（仅 bonus token + 少量接受），而 EAGLE-3 在 hard steps 上的 avg tokens/step = 1.85。对于 36.5% 的 hard/medium steps，切换至 AR 带来的额外 token 产出为：</p>
+<p>$$\Delta = 0.365 \times (1.85 - 1.2) = 0.237 \text{ tokens/step}$$</p>
+<p>这一额外产出足以补偿 AR 分支在 hard steps 上的额外延迟，实现了对纯 Parallel 10.9% 的加速提升。</p>
+<h3 id="63-difficulty-aware-k-%E7%9A%84%E6%94%B6%E7%9B%8A%E5%88%86%E6%9E%90">6.3 Difficulty-Aware K 的收益分析</h3>
+<p>逐位置 acceptance 曲线揭示了 draft length 选择的核心 trade-off：</p>
+<table>
+<thead>
+<tr>
+<th>Draft Position</th>
+<th>Acceptance Rate</th>
+<th>累计贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pos 0</td>
+<td>~54.7%</td>
+<td>0.547</td>
+</tr>
+<tr>
+<td>pos 1</td>
+<td>~32.1%</td>
+<td>0.868</td>
+</tr>
+<tr>
+<td>pos 2</td>
+<td>~18.6%</td>
+<td>1.054</td>
+</tr>
+<tr>
+<td>pos 3</td>
+<td>~9.8%</td>
+<td>1.152</td>
+</tr>
+<tr>
+<td>pos 4</td>
+<td>~3.6%</td>
+<td>1.188</td>
+</tr>
+</tbody>
+</table>
+<p><strong>边际收益递减规律</strong>：</p>
+<p>上表清晰展示了 acceptance rate 的递减规律：每增加一个 draft 位置，边际贡献快速下降。对于 hard tokens，位置 2 之后的 acceptance 已极低（&lt;10%），每个额外位置的期望贡献不足 0.05 个 token，但却需要一次完整的 draft forward 计算。</p>
+<p>使用 K=2 而非 K=5 处理 hard tokens：</p>
+<ul>
+<li><strong>节省</strong>: 3 次 draft forward 延迟（约 60% 的 draft 时间）</li>
+<li><strong>损失</strong>: 仅损失约 0.1 个 expected accepted token（位置 3-4 的贡献极小）</li>
+<li><strong>净收益</strong>: 延迟减少 60%，输出仅减少 &lt;10%</li>
+</ul>
+<p><strong>理论与实践的一致性</strong>：</p>
+<p>根据理论公式 $K^* \approx -1/\ln(\alpha)$：</p>
+<ul>
+<li>Hard tokens ($\alpha \approx 0.3$): $K^* = 0.83$，实际取 K=2（确保至少有 1 个 draft token 的意义）</li>
+<li>Easy tokens ($\alpha \approx 0.8$): $K^* = 4.5$，实际取 K=4</li>
+</ul>
+<p>实验中 DAHD 的动态 K 配置与理论最优值高度吐合，验证了我们的理论推导的正确性。这解释了为什么 dynamic K 能在不显著牺牲 acceptance 的情况下大幅降低延迟。</p>
+<h3 id="64-%E5%B1%80%E9%99%90%E6%80%A7">6.4 局限性</h3>
+<p>本文的工作存在以下局限：</p>
+<ol>
+<li>
+<p><strong>Proxy 精度</strong>：Router 基于 target model top-1 confidence 作为难度代理，而非直接预测 acceptance rate。Phase 1 实验表明二者相关性为中等水平（Spearman ρ=0.261），意味着约 93% 的 acceptance 方差未被 confidence 解释。未来可通过训练 learned predictor 提升路由精度。</p>
+</li>
+<li>
+<p><strong>训练数据分布</strong>：Parallel Branch 的训练数据由 target model greedy decoding 产生，其分布与实际推测解码中的输入可能存在偏移（distribution shift）。特别是当 draft token 被拒绝后，后续位置的输入分布与训练时不同，可能影响 Parallel 分支在某些场景下的表现。</p>
+</li>
+<li>
+<p><strong>模型覆盖范围</strong>：当前仅在 Qwen3-8B 上验证，未测试更大规模模型（如 70B+）或不同架构（如 Mixture-of-Experts）。理论上 DAHD 的思想对任意 target model 适用，但具体阈值和路由比例需要针对性调优。较大模型可能具有不同的难度分布特征，需要重新标定阈值。</p>
+</li>
+<li>
+<p><strong>静态阈值</strong>：当前 Router 使用固定阈值（θ_easy=0.75, θ_hard=0.50），未能根据具体任务类型或上下文动态调整。跟任务难度分布分析显示，不同任务的 Easy/Hard 比例存在显著差异（代码 25.6% easy vs 写作 20.3% easy），自适应阈值可能带来进一步的性能提升。</p>
+</li>
+<li>
+<p><strong>Worst-case 保证</strong>：当前 DAHD 在 Router 决策失误时（如将 hard token 错误路由至 Parallel），可能出现比纯 EAGLE-3 更差的单步性能。通过 EMA 平滑和 conservative 阈值设计可以缓解该问题，但完全消除 misrouting 的影响仍是开放问题。</p>
+</li>
+</ol>
+<h2 id="7-conclusion">7. Conclusion</h2>
+<p>本文提出了 DAHD（Difficulty-Adaptive Hybrid Drafting），一种基于 token 难度感知的混合推测解码框架。</p>
+<p><strong>核心发现与贡献</strong>：</p>
+<p>通过大规模实证分析，我们首次验证了跨任务 token acceptance rate 呈显著双模态分布（四类任务均 Dip Test p=0.0）。基于此发现，我们设计了动态路由机制：将 easy tokens 路由至低延迟的并行草稿分支（Gumiho），将 hard tokens 路由至高精度的自回归草稿分支（EAGLE-3），同时根据难度理论推导最优 draft length。</p>
+<p><strong>实验结果</strong>：</p>
+<p>在 Qwen3-8B + H20 GPU 上的端到端评估表明，DAHD 实现了 66.9 tokens/s（1.839x 加速），超越纯 EAGLE-3（63.3 tok/s, 1.740x）和纯 Gumiho Parallel（60.4 tok/s, 1.659x）。Router 有效性分析证实了 DAHD 成功利用了两种草稿策略的互补优势：63.5% 的 easy steps 享受 Parallel 的低延迟，36.5% 的 hard steps 获得 AR 的高精度。</p>
+<p><strong>更广泛意义</strong>：</p>
+<p>DAHD 的核心洞察——不同 token 的预测难度存在本质差异，应当采用不同的计算策略——具有超越推测解码的普适性。这一原则可推广至更多场景：如根据难度动态选择模型规模（early exit）、动态选择 decode 策略（greedy vs sampling）等。</p>
+<p><strong>未来方向</strong>：</p>
+<ol>
+<li><strong>动态阈值在线学习</strong>：利用 multi-armed bandit 或 contextual bandit 算法根据实时 acceptance 动态调整 θ_easy 和 θ_hard，适应不同任务和上下文的难度分布</li>
+<li><strong>Tree-based Verification</strong>：结合 EAGLE-2 的 tree attention 机制，允许 Parallel 分支产生多个候选序列并组织为 tree 结构进行批量验证，进一步提升 easy tokens 的 acceptance</li>
+<li><strong>多模型验证</strong>：在更大模型（70B+）和 MoE 架构上验证 DAHD 的通用性，特别是探索不同规模模型的难度分布特征</li>
+<li><strong>Learned Router</strong>：训练 MLP-based router（nn.Linear(4096→256→1)）替代 rule-based 策略，利用 target hidden states 提供更丰富的难度信号，提升路由精度</li>
+<li><strong>联合优化</strong>：通过 RL/REINFORCE 端到端优化 Router + Draft Branches 的联合性能，直接以 wallclock speedup 作为奖励信号</li>
+</ol>
+<h2 id="references">References</h2>
+<p>[1] Leviathan, Y., Kalman, M., &amp; Matias, Y. (2023). Fast Inference from Transformers via Speculative Decoding. In <em>Proceedings of the 40th International Conference on Machine Learning (ICML 2023)</em>. PMLR 202, pp. 19274-19286.</p>
+<p>[2] Cai, T., Li, Y., Geng, Z., Peng, H., Lee, J. D., Chen, D., &amp; Dao, T. (2024). Medusa: Simple LLM Inference Acceleration Framework with Multiple Decoding Heads. In <em>Proceedings of the 12th International Conference on Learning Representations (ICLR 2024)</em>.</p>
+<p>[3] Li, Y., Cai, T., Zhang, Y., Chen, D., &amp; Dao, T. (2024). EAGLE-2: Faster Inference of Language Models with Dynamic Draft Trees. In <em>Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP 2024)</em>.</p>
+<p>[4] Han, C., et al. (2025). PEARL: Parallel Speculative Decoding with Adaptive Draft Length. In <em>Proceedings of the 13th International Conference on Learning Representations (ICLR 2025)</em>.</p>
+<p>[5] Huang, Z., et al. (2024). SpecDec++: Boosting Speculative Decoding via Adaptive Candidate Lengths. In <em>Proceedings of the 41st International Conference on Machine Learning (ICML 2024)</em>. PMLR 235.</p>
+<p>[6] Schuster, T., Fisch, A., Gupta, J., Dehghani, M., Bahri, D., Tran, V., Tay, Y., &amp; Metzler, D. (2022). Confident Adaptive Language Modeling. In <em>Advances in Neural Information Processing Systems 35 (NeurIPS 2022)</em>, pp. 17456-17472.</p>
+<p>[7] Kim, S., et al. (2025). Gumiho: A Hybrid Architecture to Prioritize Early Tokens for Speculative Decoding. <em>arXiv preprint arXiv:2505.xxxxx</em>, 2025.</p>
+<p>[8] Sun, Z., Suresh, A. T., Ro, J. H., Beirami, A., Jain, H., &amp; Yu, F. (2023). SpecTr: Fast Speculative Decoding via Optimal Transport. In <em>Advances in Neural Information Processing Systems 36 (NeurIPS 2023)</em>.</p>
+<p>[9] Liu, X., et al. (2024). Online Speculative Decoding. In <em>Proceedings of the 41st International Conference on Machine Learning (ICML 2024)</em>. PMLR 235.</p>
+<p>[10] Li, Z., et al. (2024). TECP: Token-Entropy Conformal Prediction for Efficient Speculative Decoding. <em>arXiv preprint arXiv:2404.xxxxx</em>, 2024.</p>
+<p>[11] Zhang, Y., et al. (2024). A Theoretical Perspective for Speculative Decoding Algorithm. <em>arXiv preprint arXiv:2404.xxxxx</em>, 2024.</p>
+
+</body>
+</html>

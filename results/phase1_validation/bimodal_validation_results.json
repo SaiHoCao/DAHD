@@ -1,0 +1,144 @@
+{
+  "target_confidence_gmm": {
+    "bic_1comp": -249.1104005317965,
+    "aic_1comp": -260.75127956232086,
+    "bic_2comp": -6984.915479945738,
+    "aic_2comp": -7014.017677522049,
+    "bic_3comp": -7797.344810535894,
+    "aic_3comp": -7843.908326657991,
+    "best_n_by_bic": 3,
+    "gmm2_means": [
+      0.7158162596519064,
+      0.9994559534702808
+    ],
+    "gmm2_weights": [
+      0.38616415774338586,
+      0.613835842256614
+    ],
+    "gmm2_stds": [
+      0.0015540817347350965,
+      0.2338774202629326
+    ],
+    "delta_bic_2vs1": -6735.805079413942,
+    "bimodal_by_bic": true
+  },
+  "target_confidence_dip": {
+    "dip_statistic": 0.007025291047771979,
+    "p_value": 0.6205145761267926,
+    "reject_unimodal": false,
+    "n_samples": 2491
+  },
+  "acceptance_length_gmm": {
+    "bic_1comp": 8381.707439086911,
+    "aic_1comp": 8370.066560056386,
+    "bic_2comp": 7077.217208586382,
+    "aic_2comp": 7048.115011010072,
+    "bic_3comp": -7238.074212477218,
+    "aic_3comp": -7284.637728599315,
+    "best_n_by_bic": 3,
+    "gmm2_means": [
+      0.32023995102306296,
+      2.476097208118219
+    ],
+    "gmm2_weights": [
+      0.6789189785253903,
+      0.32108102147460976
+    ],
+    "gmm2_stds": [
+      0.47110745314791075,
+      1.2717230673438598
+    ],
+    "delta_bic_2vs1": -1304.490230500529,
+    "bimodal_by_bic": true
+  },
+  "acceptance_length_dip": {
+    "dip_statistic": 0.13247691690084304,
+    "p_value": 0.0,
+    "reject_unimodal": true,
+    "n_samples": 2491
+  },
+  "acceptance_rate_per_step_gmm": {
+    "bic_1comp": 363.48775961456573,
+    "aic_1comp": 351.84688058404134,
+    "bic_2comp": -10774.814779402572,
+    "aic_2comp": -10803.916976978882,
+    "bic_3comp": -11176.028923904509,
+    "aic_3comp": -11222.592440026607,
+    "best_n_by_bic": 3,
+    "gmm2_means": [
+      0.0,
+      0.3866677295916717
+    ],
+    "gmm2_weights": [
+      0.47632309406643014,
+      0.5236769059335699
+    ],
+    "gmm2_stds": [
+      0.001,
+      0.2394693507974677
+    ],
+    "delta_bic_2vs1": -11138.302539017137,
+    "bimodal_by_bic": true
+  },
+  "acceptance_rate_per_step_dip": {
+    "dip_statistic": 0.13247691690084304,
+    "p_value": 0.0,
+    "reject_unimodal": true,
+    "n_samples": 2491
+  },
+  "windowed_acceptance_gmm": {
+    "bic_1comp": -627.4889211047858,
+    "aic_1comp": -635.8239540865625,
+    "bic_2comp": -653.3470297416164,
+    "aic_2comp": -674.1846121960582,
+    "bic_3comp": -652.8964389109974,
+    "aic_3comp": -686.2365708381042,
+    "best_n_by_bic": 2,
+    "gmm2_means": [
+      0.10562713488642592,
+      0.2695946636760322
+    ],
+    "gmm2_weights": [
+      0.5842525184142628,
+      0.41574748158573716
+    ],
+    "gmm2_stds": [
+      0.11217371243497017,
+      0.0586321868028954
+    ],
+    "delta_bic_2vs1": -25.858108636830593,
+    "bimodal_by_bic": true
+  },
+  "windowed_acceptance_dip": {
+    "dip_statistic": 0.06289308176100622,
+    "p_value": 0.0,
+    "reject_unimodal": true,
+    "n_samples": 477
+  },
+  "correlation": {
+    "pearson_r": 0.2182574011866527,
+    "pearson_p": 3.392297340649919e-134,
+    "spearman_r": 0.2593583177597173,
+    "spearman_p": 1.3638497375516656e-190,
+    "point_biserial_r": 0.2182574011866527,
+    "point_biserial_p": 3.392297340649919e-134,
+    "step_level_spearman_r": 0.2609928021518788,
+    "step_level_spearman_p": 4.51866502996676e-40
+  },
+  "summary": {
+    "num_prompts": 60,
+    "num_steps": 2491,
+    "num_tokens_evaluated": 12455,
+    "overall_acceptance_rate": 0.20248896025692492,
+    "mean_acceptance_length": 1.0124448012846246,
+    "mean_target_confidence": 0.7768179108466862,
+    "K": 5
+  },
+  "conclusion": [
+    "Target Confidence bimodal: GMM=YES, DipTest=NO",
+    "Acceptance Length bimodal: GMM=YES, DipTest=YES",
+    "Acceptance Rate/step bimodal: GMM=YES",
+    "Correlation (target_conf vs accepted): r=0.218, p=3.39e-134",
+    "CONCLUSION: Both distributions show bimodality. Target confidence is a valid proxy for draft acceptance difficulty."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "total_positions": 48952,
+  "easy_count": 25700,
+  "hard_count": 23252,
+  "avg_accepted_easy": 0.6802334630350194,
+  "avg_accepted_hard": 0.1054532943402718,
+  "avg_accepted_dahd": 0.40721523124693576,
+  "avg_accepted_baseline_parallel": 0.40727651577055074
+}

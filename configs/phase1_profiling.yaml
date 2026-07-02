@@ -1,0 +1,43 @@
+# Phase 1: Target Model Profiling Configuration
+# This phase profiles the target model's latency across different tasks
+# to establish baselines for speculative decoding gains.
+
+phase: 1
+experiment_name: "llama2_7b_profiling"
+seed: 42
+device: "cuda:0"
+
+# Model configuration
+target_model: "meta-llama/Llama-2-7b-hf"
+draft_model: null
+
+# Task configuration
+tasks:
+  - "gsm8k"
+  - "humaneval"
+  - "mt_bench"
+num_samples_per_task: 100
+batch_size: 1
+
+# Timing configuration
+warmup_runs: 5
+timed_runs: 30
+warmup_stability_cv: 0.02
+
+# Difficulty routing parameters (used in later phases)
+probe_weight: 0.6
+ema_weight: 0.4
+ema_alpha: 0.3
+
+# Threshold configuration
+easy_threshold: 0.7
+hard_threshold: 0.5
+
+# Draft length configuration
+draft_length_easy: 6
+draft_length_hard: 3
+draft_length_medium: 4
+
+# Output paths
+output_dir: "outputs"
+checkpoint_dir: "checkpoints"

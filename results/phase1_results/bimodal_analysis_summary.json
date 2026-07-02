@@ -1,0 +1,97 @@
+{
+  "total_tokens": 12800,
+  "top1_prob_stats": {
+    "mean": 0.7753730821609497,
+    "std": 0.25906554437924906,
+    "median": 0.90234375,
+    "skewness": -0.8821952880360007,
+    "kurtosis": -0.5301002568607065
+  },
+  "bimodality_tests": {
+    "dip_test": {
+      "dip_statistic": 0.20134367960136573,
+      "p_value": 0.0,
+      "reject_unimodality": true,
+      "n_bootstrap": 2000
+    },
+    "gmm_analysis": {
+      "best_n_components": 3,
+      "bic_scores": {
+        "1": 1766.4817881086094,
+        "2": -24522.308965175424,
+        "3": -27974.802358937937
+      },
+      "models": {
+        "1": {
+          "bic": 1766.4817881086094,
+          "means": [
+            0.7753730821609497
+          ],
+          "stds": [
+            0.25906747438556743
+          ],
+          "weights": [
+            1.0
+          ]
+        },
+        "2": {
+          "bic": -24522.308965175424,
+          "means": [
+            0.9994199547634218,
+            0.6740172305373369
+          ],
+          "stds": [
+            0.001727841432761512,
+            0.25395966083598137
+          ],
+          "weights": [
+            0.3114781901862241,
+            0.6885218098137759
+          ]
+        },
+        "3": {
+          "bic": -27974.802358937937,
+          "means": [
+            0.9994558213998366,
+            0.5489933551895743,
+            0.9432502025805768
+          ],
+          "stds": [
+            0.001686325256522851,
+            0.21079715646828118,
+            0.04686416430236228
+          ],
+          "weights": [
+            0.3063806828282207,
+            0.4694843920077662,
+            0.22413492516401315
+          ]
+        }
+      },
+      "bimodal_preferred": true,
+      "bic_improvement_2_vs_1": 26288.790753284033
+    },
+    "kl_divergence": {
+      "kl_unimodal": 0.8121240344852338,
+      "kl_bimodal": 0.9937821704147627,
+      "kl_reduction": -0.18165813592952884,
+      "bimodal_better_fit": false,
+      "gmm_means": [
+        0.9994199547634218,
+        0.6740172305373369
+      ],
+      "gmm_weights": [
+        0.3114781901862241,
+        0.6885218098137759
+      ],
+      "gmm_stds": [
+        0.001727841432761512,
+        0.25395966083598137
+      ]
+    }
+  },
+  "conclusion": {
+    "bimodal_evidence_strong": false,
+    "interpretation": "STRONG bimodal evidence (2/3 tests support bimodality). Token predictability shows distinct 'easy' (high confidence) and 'hard' (low confidence) modes. This validates the DAHD hypothesis: adaptive draft lengths should improve speculative decoding."
+  }
+}

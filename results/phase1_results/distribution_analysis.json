@@ -1,0 +1,48 @@
+{
+  "total_tokens": 12800,
+  "total_prompts": 100,
+  "top1_prob_stats": {
+    "mean": 0.7753730821609497,
+    "std": 0.25906554437924906,
+    "median": 0.90234375,
+    "p10": 0.359375,
+    "p25": 0.57421875,
+    "p75": 1.0,
+    "p90": 1.0
+  },
+  "confidence_regions": {
+    "high_gt_0.8": 0.590625,
+    "mid_0.3_0.8": 0.3409375,
+    "low_lt_0.3": 0.0684375
+  },
+  "entropy_stats": {
+    "mean": 0.7914886502503253,
+    "std": 0.9843977027264665,
+    "median": 0.421875
+  },
+  "draft_head_acceptance": 0.008984375,
+  "histogram_peaks": [
+    {
+      "center": 0.8713568115234375,
+      "count": 256
+    },
+    {
+      "center": 0.4953228759765625,
+      "count": 219
+    },
+    {
+      "center": 0.8119830322265624,
+      "count": 212
+    },
+    {
+      "center": 0.6140704345703125,
+      "count": 207
+    },
+    {
+      "center": 0.5546966552734375,
+      "count": 198
+    }
+  ],
+  "num_peaks": 10,
+  "bimodal_detected": true
+}

@@ -1,0 +1,1811 @@
+{
+  "config": {
+    "target_model": "/mnt/nas1/hf/Qwen3-8B/",
+    "eagle_k": 5,
+    "k_easy": 4,
+    "k_medium": 3,
+    "k_hard": 2,
+    "easy_threshold": 0.75,
+    "hard_threshold": 0.5,
+    "max_new_tokens": 128,
+    "num_prompts": 50,
+    "parallel_type": "gumiho"
+  },
+  "summary": {
+    "vanilla": {
+      "avg_tokens_per_sec": 36.382994868915034,
+      "std_tokens_per_sec": 8.803653158977827,
+      "avg_accepted_per_step": 0.0,
+      "avg_tokens_per_step": 1.0,
+      "speedup_vs_vanilla": 1.0,
+      "num_prompts": 50
+    },
+    "eagle3": {
+      "avg_tokens_per_sec": 63.32370253622962,
+      "std_tokens_per_sec": 14.028082783249964,
+      "avg_accepted_per_step": 1.005004806921488,
+      "avg_tokens_per_step": 3.0050048069214874,
+      "speedup_vs_vanilla": 1.7404752622586392,
+      "num_prompts": 50
+    },
+    "parallel": {
+      "avg_tokens_per_sec": 60.35602269316161,
+      "std_tokens_per_sec": 3.3964485008191265,
+      "avg_accepted_per_step": 0.24584776543920264,
+      "avg_tokens_per_step": 2.245847765439202,
+      "speedup_vs_vanilla": 1.658907489903441,
+      "num_prompts": 50
+    },
+    "dahd": {
+      "avg_tokens_per_sec": 66.91843346236013,
+      "std_tokens_per_sec": 4.342929847669589,
+      "avg_accepted_per_step": 0.49656036336882564,
+      "avg_tokens_per_step": 2.496560363368826,
+      "speedup_vs_vanilla": 1.8392777643363827,
+      "num_prompts": 50,
+      "easy_ratio": 0.6346492975268303,
+      "medium_ratio": 0.2206565654638646,
+      "hard_ratio": 0.1446941370093051
+    }
+  },
+  "per_prompt": {
+    "vanilla": [
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.015883996617049,
+        "tokens_per_sec": 42.441950732713536,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0040756100788713,
+        "tokens_per_sec": 42.60878107413528,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0392085961066186,
+        "tokens_per_sec": 42.11622728494995,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.604243752080947,
+        "tokens_per_sec": 35.51369130517266,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.111359945964068,
+        "tokens_per_sec": 41.13956669206225,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0403556819073856,
+        "tokens_per_sec": 42.10033739200488,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.969666142947972,
+        "tokens_per_sec": 43.102488238942264,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.952589388936758,
+        "tokens_per_sec": 43.351778096748305,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.954425366129726,
+        "tokens_per_sec": 43.324837874540385,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0084194419905543,
+        "tokens_per_sec": 42.54725860809734,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0571084478870034,
+        "tokens_per_sec": 41.8696301364351,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 6.9222782352007926,
+        "tokens_per_sec": 18.491022124638295,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 4.3060024827718735,
+        "tokens_per_sec": 29.725946631968366,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.231693114619702,
+        "tokens_per_sec": 39.607721234713445,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0864804699085653,
+        "tokens_per_sec": 41.471184168481685,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.051832979079336,
+        "tokens_per_sec": 41.942006943844774,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0187610290013254,
+        "tokens_per_sec": 42.401501400839706,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0320648518390954,
+        "tokens_per_sec": 42.21545588721882,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0402564080432057,
+        "tokens_per_sec": 42.101712099468735,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0300019229762256,
+        "tokens_per_sec": 42.2441976123473,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.047766712028533,
+        "tokens_per_sec": 41.99796509845261,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0188757120631635,
+        "tokens_per_sec": 42.39989062435502,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0105724283494055,
+        "tokens_per_sec": 42.51683128254052,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0209531569853425,
+        "tokens_per_sec": 42.370733125744074,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0254982211627066,
+        "tokens_per_sec": 42.30708155921813,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0310928728431463,
+        "tokens_per_sec": 42.2289930957928,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0592770292423666,
+        "tokens_per_sec": 41.83995067347639,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.322848152834922,
+        "tokens_per_sec": 38.521170427482666,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.22302912408486,
+        "tokens_per_sec": 39.71419278947535,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.959288383834064,
+        "tokens_per_sec": 43.25364188878502,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.9491470311768353,
+        "tokens_per_sec": 43.40237995829003,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.9912540069781244,
+        "tokens_per_sec": 42.79141781386541,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.983376365620643,
+        "tokens_per_sec": 42.90440906988002,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.9526214050129056,
+        "tokens_per_sec": 43.35130802163934,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.046360514126718,
+        "tokens_per_sec": 42.017351330032255,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 3.0206544171087444,
+        "tokens_per_sec": 42.374923551339826,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 53,
+        "wall_time": 1.2368981512263417,
+        "tokens_per_sec": 42.84912217505729,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 53
+      },
+      {
+        "tokens_generated": 102,
+        "wall_time": 3.17481287708506,
+        "tokens_per_sec": 32.12787775185379,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 102
+      },
+      {
+        "tokens_generated": 11,
+        "wall_time": 0.4980363599024713,
+        "tokens_per_sec": 22.086740819794947,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 11
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 5.7621626341715455,
+        "tokens_per_sec": 22.21388185764097,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 5.765437233261764,
+        "tokens_per_sec": 22.20126502488775,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 5.782680573873222,
+        "tokens_per_sec": 22.13506320551716,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 5.951332240365446,
+        "tokens_per_sec": 21.50778932015062,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 5.635288244113326,
+        "tokens_per_sec": 22.714011148180393,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 5.510318143758923,
+        "tokens_per_sec": 23.229148782448235,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 5.546161554288119,
+        "tokens_per_sec": 23.079024789862892,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 5.711120489053428,
+        "tokens_per_sec": 22.41241455951404,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 5.498418143950403,
+        "tokens_per_sec": 23.279422671924493,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 5.74893811205402,
+        "tokens_per_sec": 22.264981376581087,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 5.6289804968982935,
+        "tokens_per_sec": 22.739464112645468,
+        "avg_accepted": 0.0,
+        "avg_tokens_per_step": 1.0,
+        "num_steps": 128
+      }
+    ],
+    "eagle3": [
+      {
+        "tokens_generated": 128,
+        "wall_time": 4.971765708178282,
+        "tokens_per_sec": 25.745380517317425,
+        "avg_accepted": 0.782608695652174,
+        "avg_tokens_per_step": 2.782608695652174,
+        "num_steps": 46
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 4.4196008131839335,
+        "tokens_per_sec": 29.1881564541271,
+        "avg_accepted": 1.146341463414634,
+        "avg_tokens_per_step": 3.1463414634146343,
+        "num_steps": 41
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 4.499258293770254,
+        "tokens_per_sec": 28.893651244695178,
+        "avg_accepted": 1.25,
+        "avg_tokens_per_step": 3.25,
+        "num_steps": 40
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 4.63545884238556,
+        "tokens_per_sec": 27.61323190481117,
+        "avg_accepted": 0.8444444444444444,
+        "avg_tokens_per_step": 2.8444444444444446,
+        "num_steps": 45
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 5.578043518122286,
+        "tokens_per_sec": 22.947113909051776,
+        "avg_accepted": 1.0476190476190477,
+        "avg_tokens_per_step": 3.0476190476190474,
+        "num_steps": 42
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.9375865631736815,
+        "tokens_per_sec": 66.0615646458353,
+        "avg_accepted": 1.2820512820512822,
+        "avg_tokens_per_step": 3.282051282051282,
+        "num_steps": 39
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.0564869618974626,
+        "tokens_per_sec": 62.72833350763155,
+        "avg_accepted": 0.6875,
+        "avg_tokens_per_step": 2.6875,
+        "num_steps": 48
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.9248860501684248,
+        "tokens_per_sec": 67.01695406266396,
+        "avg_accepted": 0.8666666666666667,
+        "avg_tokens_per_step": 2.8666666666666667,
+        "num_steps": 45
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 1.9705046266317368,
+        "tokens_per_sec": 65.97294837222192,
+        "avg_accepted": 0.8260869565217391,
+        "avg_tokens_per_step": 2.8260869565217392,
+        "num_steps": 46
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.2873256453312933,
+        "tokens_per_sec": 55.960549500795125,
+        "avg_accepted": 0.56,
+        "avg_tokens_per_step": 2.56,
+        "num_steps": 50
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.9543152078986168,
+        "tokens_per_sec": 66.00777575624949,
+        "avg_accepted": 0.9318181818181818,
+        "avg_tokens_per_step": 2.9318181818181817,
+        "num_steps": 44
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.681986826006323,
+        "tokens_per_sec": 76.6950121162929,
+        "avg_accepted": 1.4864864864864864,
+        "avg_tokens_per_step": 3.4864864864864864,
+        "num_steps": 37
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.7231341837905347,
+        "tokens_per_sec": 74.28324572984025,
+        "avg_accepted": 1.368421052631579,
+        "avg_tokens_per_step": 3.3684210526315788,
+        "num_steps": 38
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.1541503369808197,
+        "tokens_per_sec": 59.88439979579225,
+        "avg_accepted": 0.5294117647058824,
+        "avg_tokens_per_step": 2.5294117647058822,
+        "num_steps": 51
+      },
+      {
+        "tokens_generated": 134,
+        "wall_time": 1.9363690000027418,
+        "tokens_per_sec": 69.20168624875231,
+        "avg_accepted": 1.1162790697674418,
+        "avg_tokens_per_step": 3.116279069767442,
+        "num_steps": 43
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.8406970468349755,
+        "tokens_per_sec": 70.08214644653867,
+        "avg_accepted": 1.146341463414634,
+        "avg_tokens_per_step": 3.1463414634146343,
+        "num_steps": 41
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.8363523450680077,
+        "tokens_per_sec": 70.24795668786678,
+        "avg_accepted": 1.146341463414634,
+        "avg_tokens_per_step": 3.1463414634146343,
+        "num_steps": 41
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.8350633787922561,
+        "tokens_per_sec": 70.29729953245601,
+        "avg_accepted": 1.146341463414634,
+        "avg_tokens_per_step": 3.1463414634146343,
+        "num_steps": 41
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.1837283298373222,
+        "tokens_per_sec": 59.073282256502075,
+        "avg_accepted": 0.58,
+        "avg_tokens_per_step": 2.58,
+        "num_steps": 50
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 1.9903305848129094,
+        "tokens_per_sec": 65.31578271064953,
+        "avg_accepted": 0.8888888888888888,
+        "avg_tokens_per_step": 2.888888888888889,
+        "num_steps": 45
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.147497958969325,
+        "tokens_per_sec": 60.069905752978016,
+        "avg_accepted": 0.6326530612244898,
+        "avg_tokens_per_step": 2.63265306122449,
+        "num_steps": 49
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.7076842179521918,
+        "tokens_per_sec": 74.9553100358883,
+        "avg_accepted": 1.2820512820512822,
+        "avg_tokens_per_step": 3.282051282051282,
+        "num_steps": 39
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.0575713482685387,
+        "tokens_per_sec": 62.6952742652421,
+        "avg_accepted": 1.0714285714285714,
+        "avg_tokens_per_step": 3.0714285714285716,
+        "num_steps": 42
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.6469933311454952,
+        "tokens_per_sec": 78.32454300848906,
+        "avg_accepted": 1.5833333333333333,
+        "avg_tokens_per_step": 3.5833333333333335,
+        "num_steps": 36
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.9993016286753118,
+        "tokens_per_sec": 64.02235568867599,
+        "avg_accepted": 0.8444444444444444,
+        "avg_tokens_per_step": 2.8444444444444446,
+        "num_steps": 45
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.9709895481355488,
+        "tokens_per_sec": 64.94199835868292,
+        "avg_accepted": 0.9090909090909091,
+        "avg_tokens_per_step": 2.909090909090909,
+        "num_steps": 44
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.8365130489692092,
+        "tokens_per_sec": 69.69729949473724,
+        "avg_accepted": 1.1219512195121952,
+        "avg_tokens_per_step": 3.1219512195121952,
+        "num_steps": 41
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.9561035009101033,
+        "tokens_per_sec": 65.94743066508548,
+        "avg_accepted": 0.8043478260869565,
+        "avg_tokens_per_step": 2.8043478260869565,
+        "num_steps": 46
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.1783441831357777,
+        "tokens_per_sec": 58.76022760358328,
+        "avg_accepted": 0.5098039215686274,
+        "avg_tokens_per_step": 2.5098039215686274,
+        "num_steps": 51
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 2.0430438606999815,
+        "tokens_per_sec": 63.63054778249342,
+        "avg_accepted": 0.7083333333333334,
+        "avg_tokens_per_step": 2.7083333333333335,
+        "num_steps": 48
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 1.724400089122355,
+        "tokens_per_sec": 75.3885370454628,
+        "avg_accepted": 1.25,
+        "avg_tokens_per_step": 3.25,
+        "num_steps": 40
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.044498587027192,
+        "tokens_per_sec": 63.096155125043516,
+        "avg_accepted": 0.7446808510638298,
+        "avg_tokens_per_step": 2.74468085106383,
+        "num_steps": 47
+      },
+      {
+        "tokens_generated": 131,
+        "wall_time": 1.7612967710010707,
+        "tokens_per_sec": 74.37701706881762,
+        "avg_accepted": 1.275,
+        "avg_tokens_per_step": 3.275,
+        "num_steps": 40
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.7377865090966225,
+        "tokens_per_sec": 73.65691891953978,
+        "avg_accepted": 1.2,
+        "avg_tokens_per_step": 3.2,
+        "num_steps": 40
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.8087063021957874,
+        "tokens_per_sec": 70.76881406594687,
+        "avg_accepted": 1.1219512195121952,
+        "avg_tokens_per_step": 3.1219512195121952,
+        "num_steps": 41
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.6991244931705296,
+        "tokens_per_sec": 75.92145279436753,
+        "avg_accepted": 1.394736842105263,
+        "avg_tokens_per_step": 3.3947368421052633,
+        "num_steps": 38
+      },
+      {
+        "tokens_generated": 92,
+        "wall_time": 1.4587941062636673,
+        "tokens_per_sec": 63.065788108806366,
+        "avg_accepted": 0.7058823529411765,
+        "avg_tokens_per_step": 2.7058823529411766,
+        "num_steps": 34
+      },
+      {
+        "tokens_generated": 119,
+        "wall_time": 1.5879802671261132,
+        "tokens_per_sec": 74.93795890509598,
+        "avg_accepted": 1.3055555555555556,
+        "avg_tokens_per_step": 3.3055555555555554,
+        "num_steps": 36
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.4699333417229354,
+        "tokens_per_sec": 87.078778585952,
+        "avg_accepted": 1.878787878787879,
+        "avg_tokens_per_step": 3.878787878787879,
+        "num_steps": 33
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 2.547919131349772,
+        "tokens_per_sec": 51.02202750490432,
+        "avg_accepted": 0.5490196078431373,
+        "avg_tokens_per_step": 2.549019607843137,
+        "num_steps": 51
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.9239020394161344,
+        "tokens_per_sec": 67.05123096555836,
+        "avg_accepted": 1.0,
+        "avg_tokens_per_step": 3.0,
+        "num_steps": 43
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.65522680291906,
+        "tokens_per_sec": 48.20680472917848,
+        "avg_accepted": 0.8444444444444444,
+        "avg_tokens_per_step": 2.8444444444444446,
+        "num_steps": 45
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 1.6179438550025225,
+        "tokens_per_sec": 80.34889443045434,
+        "avg_accepted": 1.6111111111111112,
+        "avg_tokens_per_step": 3.611111111111111,
+        "num_steps": 36
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.907178299035877,
+        "tokens_per_sec": 67.63919244740384,
+        "avg_accepted": 0.9318181818181818,
+        "avg_tokens_per_step": 2.9318181818181817,
+        "num_steps": 44
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.959304491057992,
+        "tokens_per_sec": 65.83968984338016,
+        "avg_accepted": 0.8043478260869565,
+        "avg_tokens_per_step": 2.8043478260869565,
+        "num_steps": 46
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 2.0711477329023182,
+        "tokens_per_sec": 62.76713048268643,
+        "avg_accepted": 0.7083333333333334,
+        "avg_tokens_per_step": 2.7083333333333335,
+        "num_steps": 48
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.9313702769577503,
+        "tokens_per_sec": 66.79195674648044,
+        "avg_accepted": 1.0,
+        "avg_tokens_per_step": 3.0,
+        "num_steps": 43
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.8884247271344066,
+        "tokens_per_sec": 68.31090386946546,
+        "avg_accepted": 0.9318181818181818,
+        "avg_tokens_per_step": 2.9318181818181817,
+        "num_steps": 44
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.102068949956447,
+        "tokens_per_sec": 60.892388902206115,
+        "avg_accepted": 0.6666666666666666,
+        "avg_tokens_per_step": 2.6666666666666665,
+        "num_steps": 48
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.7729004607535899,
+        "tokens_per_sec": 72.76212221478424,
+        "avg_accepted": 1.225,
+        "avg_tokens_per_step": 3.225,
+        "num_steps": 40
+      }
+    ],
+    "parallel": [
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.0967799299396574,
+        "tokens_per_sec": 61.52290860763459,
+        "avg_accepted": 0.30357142857142855,
+        "avg_tokens_per_step": 2.3035714285714284,
+        "num_steps": 56
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.061670284718275,
+        "tokens_per_sec": 62.57062584458198,
+        "avg_accepted": 0.30357142857142855,
+        "avg_tokens_per_step": 2.3035714285714284,
+        "num_steps": 56
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.065843660850078,
+        "tokens_per_sec": 61.960158179312096,
+        "avg_accepted": 0.32727272727272727,
+        "avg_tokens_per_step": 2.327272727272727,
+        "num_steps": 55
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.099021336995065,
+        "tokens_per_sec": 61.45721233337957,
+        "avg_accepted": 0.22413793103448276,
+        "avg_tokens_per_step": 2.2241379310344827,
+        "num_steps": 58
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.043296397663653,
+        "tokens_per_sec": 62.64387298208808,
+        "avg_accepted": 0.32727272727272727,
+        "avg_tokens_per_step": 2.327272727272727,
+        "num_steps": 55
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.3634522375650704,
+        "tokens_per_sec": 54.581174922706,
+        "avg_accepted": 0.11475409836065574,
+        "avg_tokens_per_step": 2.1147540983606556,
+        "num_steps": 61
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.069390621036291,
+        "tokens_per_sec": 62.33719177455271,
+        "avg_accepted": 0.2631578947368421,
+        "avg_tokens_per_step": 2.263157894736842,
+        "num_steps": 57
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.2059244639240205,
+        "tokens_per_sec": 58.025558940629594,
+        "avg_accepted": 0.24561403508771928,
+        "avg_tokens_per_step": 2.245614035087719,
+        "num_steps": 57
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.0729040070436895,
+        "tokens_per_sec": 61.74912083003283,
+        "avg_accepted": 0.20689655172413793,
+        "avg_tokens_per_step": 2.206896551724138,
+        "num_steps": 58
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.1332592479884624,
+        "tokens_per_sec": 60.00208372268698,
+        "avg_accepted": 0.20689655172413793,
+        "avg_tokens_per_step": 2.206896551724138,
+        "num_steps": 58
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.0296037471853197,
+        "tokens_per_sec": 63.559204686579264,
+        "avg_accepted": 0.34545454545454546,
+        "avg_tokens_per_step": 2.3454545454545452,
+        "num_steps": 55
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.028403505217284,
+        "tokens_per_sec": 63.1038152274779,
+        "avg_accepted": 0.32727272727272727,
+        "avg_tokens_per_step": 2.327272727272727,
+        "num_steps": 55
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.1439786800183356,
+        "tokens_per_sec": 59.70208621613034,
+        "avg_accepted": 0.20689655172413793,
+        "avg_tokens_per_step": 2.206896551724138,
+        "num_steps": 58
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.057798543944955,
+        "tokens_per_sec": 62.688352258573026,
+        "avg_accepted": 0.2631578947368421,
+        "avg_tokens_per_step": 2.263157894736842,
+        "num_steps": 57
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.1997155779972672,
+        "tokens_per_sec": 58.64394528562104,
+        "avg_accepted": 0.1864406779661017,
+        "avg_tokens_per_step": 2.1864406779661016,
+        "num_steps": 59
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.1539645879529417,
+        "tokens_per_sec": 59.42530379371142,
+        "avg_accepted": 0.20689655172413793,
+        "avg_tokens_per_step": 2.206896551724138,
+        "num_steps": 58
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 2.002484858967364,
+        "tokens_per_sec": 64.91934229507136,
+        "avg_accepted": 0.4074074074074074,
+        "avg_tokens_per_step": 2.4074074074074074,
+        "num_steps": 54
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.1891250950284302,
+        "tokens_per_sec": 58.927651184924486,
+        "avg_accepted": 0.1864406779661017,
+        "avg_tokens_per_step": 2.1864406779661016,
+        "num_steps": 59
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.1483453433029354,
+        "tokens_per_sec": 60.04621203110262,
+        "avg_accepted": 0.22413793103448276,
+        "avg_tokens_per_step": 2.2241379310344827,
+        "num_steps": 58
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.0741365742869675,
+        "tokens_per_sec": 61.71242607011207,
+        "avg_accepted": 0.2857142857142857,
+        "avg_tokens_per_step": 2.2857142857142856,
+        "num_steps": 56
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.07777994684875,
+        "tokens_per_sec": 62.085496683923104,
+        "avg_accepted": 0.30357142857142855,
+        "avg_tokens_per_step": 2.3035714285714284,
+        "num_steps": 56
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.0987789621576667,
+        "tokens_per_sec": 61.46430964191699,
+        "avg_accepted": 0.2631578947368421,
+        "avg_tokens_per_step": 2.263157894736842,
+        "num_steps": 57
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 2.152585444971919,
+        "tokens_per_sec": 60.39249234155064,
+        "avg_accepted": 0.2033898305084746,
+        "avg_tokens_per_step": 2.2033898305084745,
+        "num_steps": 59
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.06895401282236,
+        "tokens_per_sec": 61.86701067627358,
+        "avg_accepted": 0.2857142857142857,
+        "avg_tokens_per_step": 2.2857142857142856,
+        "num_steps": 56
+      },
+      {
+        "tokens_generated": 131,
+        "wall_time": 2.7664096360094845,
+        "tokens_per_sec": 47.35379688344567,
+        "avg_accepted": 0.2982456140350877,
+        "avg_tokens_per_step": 2.2982456140350878,
+        "num_steps": 57
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.1542807719670236,
+        "tokens_per_sec": 59.880773982034434,
+        "avg_accepted": 0.22413793103448276,
+        "avg_tokens_per_step": 2.2241379310344827,
+        "num_steps": 58
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.196556393057108,
+        "tokens_per_sec": 58.72828961175055,
+        "avg_accepted": 0.1864406779661017,
+        "avg_tokens_per_step": 2.1864406779661016,
+        "num_steps": 59
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.0187632157467306,
+        "tokens_per_sec": 63.900510467882455,
+        "avg_accepted": 0.30357142857142855,
+        "avg_tokens_per_step": 2.3035714285714284,
+        "num_steps": 56
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.1796383522450924,
+        "tokens_per_sec": 58.72533848019154,
+        "avg_accepted": 0.13333333333333333,
+        "avg_tokens_per_step": 2.1333333333333333,
+        "num_steps": 60
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.0494530010037124,
+        "tokens_per_sec": 62.45568936555873,
+        "avg_accepted": 0.24561403508771928,
+        "avg_tokens_per_step": 2.245614035087719,
+        "num_steps": 57
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.1198808448389173,
+        "tokens_per_sec": 60.852476833339324,
+        "avg_accepted": 0.1864406779661017,
+        "avg_tokens_per_step": 2.1864406779661016,
+        "num_steps": 59
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.018897660076618,
+        "tokens_per_sec": 63.89625514504999,
+        "avg_accepted": 0.34545454545454546,
+        "avg_tokens_per_step": 2.3454545454545452,
+        "num_steps": 55
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.9675515810959041,
+        "tokens_per_sec": 65.56371951791397,
+        "avg_accepted": 0.3888888888888889,
+        "avg_tokens_per_step": 2.388888888888889,
+        "num_steps": 54
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.035257721785456,
+        "tokens_per_sec": 63.38263632127783,
+        "avg_accepted": 0.30357142857142855,
+        "avg_tokens_per_step": 2.3035714285714284,
+        "num_steps": 56
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.133842291776091,
+        "tokens_per_sec": 59.98568895804383,
+        "avg_accepted": 0.20689655172413793,
+        "avg_tokens_per_step": 2.206896551724138,
+        "num_steps": 58
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.1929236613214016,
+        "tokens_per_sec": 58.36956491356857,
+        "avg_accepted": 0.13333333333333333,
+        "avg_tokens_per_step": 2.1333333333333333,
+        "num_steps": 60
+      },
+      {
+        "tokens_generated": 103,
+        "wall_time": 1.6311074900440872,
+        "tokens_per_sec": 63.1472791515512,
+        "avg_accepted": 0.28888888888888886,
+        "avg_tokens_per_step": 2.2888888888888888,
+        "num_steps": 45
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.21438249386847,
+        "tokens_per_sec": 58.25551834752824,
+        "avg_accepted": 0.11475409836065574,
+        "avg_tokens_per_step": 2.1147540983606556,
+        "num_steps": 61
+      },
+      {
+        "tokens_generated": 19,
+        "wall_time": 0.3107743398286402,
+        "tokens_per_sec": 61.13760875649041,
+        "avg_accepted": 0.375,
+        "avg_tokens_per_step": 2.375,
+        "num_steps": 8
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.234295326285064,
+        "tokens_per_sec": 57.28875609869535,
+        "avg_accepted": 0.13333333333333333,
+        "avg_tokens_per_step": 2.1333333333333333,
+        "num_steps": 60
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.122450213879347,
+        "tokens_per_sec": 60.7788108085786,
+        "avg_accepted": 0.2631578947368421,
+        "avg_tokens_per_step": 2.263157894736842,
+        "num_steps": 57
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.1441555190831423,
+        "tokens_per_sec": 60.16354637146909,
+        "avg_accepted": 0.22413793103448276,
+        "avg_tokens_per_step": 2.2241379310344827,
+        "num_steps": 58
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 2.045697391964495,
+        "tokens_per_sec": 63.548010820486134,
+        "avg_accepted": 0.32142857142857145,
+        "avg_tokens_per_step": 2.3214285714285716,
+        "num_steps": 56
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.196100586093962,
+        "tokens_per_sec": 58.28512628725441,
+        "avg_accepted": 0.09836065573770492,
+        "avg_tokens_per_step": 2.098360655737705,
+        "num_steps": 61
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.4427734799683094,
+        "tokens_per_sec": 52.39945539349009,
+        "avg_accepted": 0.13333333333333333,
+        "avg_tokens_per_step": 2.1333333333333333,
+        "num_steps": 60
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.57534123910591,
+        "tokens_per_sec": 50.090449390227356,
+        "avg_accepted": 0.2631578947368421,
+        "avg_tokens_per_step": 2.263157894736842,
+        "num_steps": 57
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.1822743490338326,
+        "tokens_per_sec": 59.11264092762338,
+        "avg_accepted": 0.1864406779661017,
+        "avg_tokens_per_step": 2.1864406779661016,
+        "num_steps": 59
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.06841110996902,
+        "tokens_per_sec": 61.88324911961875,
+        "avg_accepted": 0.20689655172413793,
+        "avg_tokens_per_step": 2.206896551724138,
+        "num_steps": 58
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.1124536362476647,
+        "tokens_per_sec": 61.06642900297766,
+        "avg_accepted": 0.2631578947368421,
+        "avg_tokens_per_step": 2.263157894736842,
+        "num_steps": 57
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.059137225151062,
+        "tokens_per_sec": 62.16195717146034,
+        "avg_accepted": 0.24561403508771928,
+        "avg_tokens_per_step": 2.245614035087719,
+        "num_steps": 57
+      }
+    ],
+    "dahd": [
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.8930192277766764,
+        "tokens_per_sec": 67.61685149407285,
+        "avg_accepted": 0.5098039215686274,
+        "avg_tokens_per_step": 2.5098039215686274,
+        "num_steps": 51,
+        "easy_ratio": 0.47058823529411764,
+        "medium_ratio": 0.3333333333333333,
+        "hard_ratio": 0.19607843137254902
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.9122786428779364,
+        "tokens_per_sec": 66.93585188367888,
+        "avg_accepted": 0.46153846153846156,
+        "avg_tokens_per_step": 2.4615384615384617,
+        "num_steps": 52,
+        "easy_ratio": 0.6923076923076923,
+        "medium_ratio": 0.25,
+        "hard_ratio": 0.057692307692307696
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.8638197858817875,
+        "tokens_per_sec": 69.21270016401779,
+        "avg_accepted": 0.58,
+        "avg_tokens_per_step": 2.58,
+        "num_steps": 50,
+        "easy_ratio": 0.6,
+        "medium_ratio": 0.18,
+        "hard_ratio": 0.22
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.9122951859608293,
+        "tokens_per_sec": 66.93527282802138,
+        "avg_accepted": 0.46153846153846156,
+        "avg_tokens_per_step": 2.4615384615384617,
+        "num_steps": 52,
+        "easy_ratio": 0.6153846153846154,
+        "medium_ratio": 0.25,
+        "hard_ratio": 0.1346153846153846
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.9966378519311547,
+        "tokens_per_sec": 64.60861185979759,
+        "avg_accepted": 0.4339622641509434,
+        "avg_tokens_per_step": 2.4339622641509435,
+        "num_steps": 53,
+        "easy_ratio": 0.8679245283018868,
+        "medium_ratio": 0.11320754716981132,
+        "hard_ratio": 0.018867924528301886
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.818815283011645,
+        "tokens_per_sec": 70.9252892280508,
+        "avg_accepted": 0.6875,
+        "avg_tokens_per_step": 2.6875,
+        "num_steps": 48,
+        "easy_ratio": 0.5625,
+        "medium_ratio": 0.22916666666666666,
+        "hard_ratio": 0.20833333333333334
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.9742959989234805,
+        "tokens_per_sec": 65.33974645663037,
+        "avg_accepted": 0.3888888888888889,
+        "avg_tokens_per_step": 2.388888888888889,
+        "num_steps": 54,
+        "easy_ratio": 0.6851851851851852,
+        "medium_ratio": 0.14814814814814814,
+        "hard_ratio": 0.16666666666666666
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 1.9894860037602484,
+        "tokens_per_sec": 65.34351071296413,
+        "avg_accepted": 0.4074074074074074,
+        "avg_tokens_per_step": 2.4074074074074074,
+        "num_steps": 54,
+        "easy_ratio": 0.7592592592592593,
+        "medium_ratio": 0.14814814814814814,
+        "hard_ratio": 0.09259259259259259
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.9244382688775659,
+        "tokens_per_sec": 67.03254767181471,
+        "avg_accepted": 0.4339622641509434,
+        "avg_tokens_per_step": 2.4339622641509435,
+        "num_steps": 53,
+        "easy_ratio": 0.5094339622641509,
+        "medium_ratio": 0.2641509433962264,
+        "hard_ratio": 0.22641509433962265
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.137115053832531,
+        "tokens_per_sec": 60.36174784724937,
+        "avg_accepted": 0.2631578947368421,
+        "avg_tokens_per_step": 2.263157894736842,
+        "num_steps": 57,
+        "easy_ratio": 0.9649122807017544,
+        "medium_ratio": 0.03508771929824561,
+        "hard_ratio": 0.0
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.0766665250994265,
+        "tokens_per_sec": 61.63724336716586,
+        "avg_accepted": 0.32727272727272727,
+        "avg_tokens_per_step": 2.327272727272727,
+        "num_steps": 55,
+        "easy_ratio": 0.9454545454545454,
+        "medium_ratio": 0.0,
+        "hard_ratio": 0.05454545454545454
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.9855066523887217,
+        "tokens_per_sec": 64.46717257079239,
+        "avg_accepted": 0.46153846153846156,
+        "avg_tokens_per_step": 2.4615384615384617,
+        "num_steps": 52,
+        "easy_ratio": 0.8461538461538461,
+        "medium_ratio": 0.1346153846153846,
+        "hard_ratio": 0.019230769230769232
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.7842926918528974,
+        "tokens_per_sec": 72.29755554624843,
+        "avg_accepted": 0.7446808510638298,
+        "avg_tokens_per_step": 2.74468085106383,
+        "num_steps": 47,
+        "easy_ratio": 0.574468085106383,
+        "medium_ratio": 0.2553191489361702,
+        "hard_ratio": 0.1702127659574468
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.9429366970434785,
+        "tokens_per_sec": 66.39434017397288,
+        "avg_accepted": 0.4339622641509434,
+        "avg_tokens_per_step": 2.4339622641509435,
+        "num_steps": 53,
+        "easy_ratio": 0.4716981132075472,
+        "medium_ratio": 0.33962264150943394,
+        "hard_ratio": 0.18867924528301888
+      },
+      {
+        "tokens_generated": 132,
+        "wall_time": 2.1359948278404772,
+        "tokens_per_sec": 61.79790244785095,
+        "avg_accepted": 0.49056603773584906,
+        "avg_tokens_per_step": 2.490566037735849,
+        "num_steps": 53,
+        "easy_ratio": 0.49056603773584906,
+        "medium_ratio": 0.32075471698113206,
+        "hard_ratio": 0.18867924528301888
+      },
+      {
+        "tokens_generated": 131,
+        "wall_time": 1.86671884637326,
+        "tokens_per_sec": 70.1766097527286,
+        "avg_accepted": 0.673469387755102,
+        "avg_tokens_per_step": 2.673469387755102,
+        "num_steps": 49,
+        "easy_ratio": 0.42857142857142855,
+        "medium_ratio": 0.3673469387755102,
+        "hard_ratio": 0.20408163265306123
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.9370477623306215,
+        "tokens_per_sec": 66.07994004546005,
+        "avg_accepted": 0.5098039215686274,
+        "avg_tokens_per_step": 2.5098039215686274,
+        "num_steps": 51,
+        "easy_ratio": 0.8627450980392157,
+        "medium_ratio": 0.11764705882352941,
+        "hard_ratio": 0.0196078431372549
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.8067480940371752,
+        "tokens_per_sec": 71.39899603366939,
+        "avg_accepted": 0.6875,
+        "avg_tokens_per_step": 2.6875,
+        "num_steps": 48,
+        "easy_ratio": 0.4791666666666667,
+        "medium_ratio": 0.2708333333333333,
+        "hard_ratio": 0.25
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.028495504055172,
+        "tokens_per_sec": 63.10095326517351,
+        "avg_accepted": 0.37037037037037035,
+        "avg_tokens_per_step": 2.3703703703703702,
+        "num_steps": 54,
+        "easy_ratio": 0.7037037037037037,
+        "medium_ratio": 0.14814814814814814,
+        "hard_ratio": 0.14814814814814814
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.023660936858505,
+        "tokens_per_sec": 63.7458566553433,
+        "avg_accepted": 0.3888888888888889,
+        "avg_tokens_per_step": 2.388888888888889,
+        "num_steps": 54,
+        "easy_ratio": 0.5370370370370371,
+        "medium_ratio": 0.3148148148148148,
+        "hard_ratio": 0.14814814814814814
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.0298522021621466,
+        "tokens_per_sec": 63.05877830102984,
+        "avg_accepted": 0.37037037037037035,
+        "avg_tokens_per_step": 2.3703703703703702,
+        "num_steps": 54,
+        "easy_ratio": 0.8888888888888888,
+        "medium_ratio": 0.07407407407407407,
+        "hard_ratio": 0.037037037037037035
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.7351155309006572,
+        "tokens_per_sec": 74.34663438983753,
+        "avg_accepted": 0.8043478260869565,
+        "avg_tokens_per_step": 2.8043478260869565,
+        "num_steps": 46,
+        "easy_ratio": 0.5217391304347826,
+        "medium_ratio": 0.2826086956521739,
+        "hard_ratio": 0.1956521739130435
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.7974420809186995,
+        "tokens_per_sec": 71.21230851264887,
+        "avg_accepted": 0.6666666666666666,
+        "avg_tokens_per_step": 2.6666666666666665,
+        "num_steps": 48,
+        "easy_ratio": 0.375,
+        "medium_ratio": 0.4166666666666667,
+        "hard_ratio": 0.20833333333333334
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.7911582947708666,
+        "tokens_per_sec": 71.46213730728604,
+        "avg_accepted": 0.6666666666666666,
+        "avg_tokens_per_step": 2.6666666666666665,
+        "num_steps": 48,
+        "easy_ratio": 0.5208333333333334,
+        "medium_ratio": 0.3125,
+        "hard_ratio": 0.16666666666666666
+      },
+      {
+        "tokens_generated": 131,
+        "wall_time": 1.8902094489894807,
+        "tokens_per_sec": 69.30448901841726,
+        "avg_accepted": 0.5686274509803921,
+        "avg_tokens_per_step": 2.5686274509803924,
+        "num_steps": 51,
+        "easy_ratio": 0.4117647058823529,
+        "medium_ratio": 0.3333333333333333,
+        "hard_ratio": 0.2549019607843137
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.862290307879448,
+        "tokens_per_sec": 68.73257056562304,
+        "avg_accepted": 0.56,
+        "avg_tokens_per_step": 2.56,
+        "num_steps": 50,
+        "easy_ratio": 0.4,
+        "medium_ratio": 0.3,
+        "hard_ratio": 0.3
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.9447156363166869,
+        "tokens_per_sec": 66.3336055878727,
+        "avg_accepted": 0.4807692307692308,
+        "avg_tokens_per_step": 2.480769230769231,
+        "num_steps": 52,
+        "easy_ratio": 0.6730769230769231,
+        "medium_ratio": 0.28846153846153844,
+        "hard_ratio": 0.038461538461538464
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.8366933669894934,
+        "tokens_per_sec": 70.23491363255842,
+        "avg_accepted": 0.5294117647058824,
+        "avg_tokens_per_step": 2.5294117647058822,
+        "num_steps": 51,
+        "easy_ratio": 0.5686274509803921,
+        "medium_ratio": 0.21568627450980393,
+        "hard_ratio": 0.21568627450980393
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.9651901726610959,
+        "tokens_per_sec": 65.13364547649509,
+        "avg_accepted": 0.37037037037037035,
+        "avg_tokens_per_step": 2.3703703703703702,
+        "num_steps": 54,
+        "easy_ratio": 0.7592592592592593,
+        "medium_ratio": 0.18518518518518517,
+        "hard_ratio": 0.05555555555555555
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 1.9815018409863114,
+        "tokens_per_sec": 65.60680253281585,
+        "avg_accepted": 0.36363636363636365,
+        "avg_tokens_per_step": 2.3636363636363638,
+        "num_steps": 55,
+        "easy_ratio": 0.6545454545454545,
+        "medium_ratio": 0.2727272727272727,
+        "hard_ratio": 0.07272727272727272
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.8799023046158254,
+        "tokens_per_sec": 68.62058718863175,
+        "avg_accepted": 0.4807692307692308,
+        "avg_tokens_per_step": 2.480769230769231,
+        "num_steps": 52,
+        "easy_ratio": 0.5384615384615384,
+        "medium_ratio": 0.28846153846153844,
+        "hard_ratio": 0.17307692307692307
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.942362132947892,
+        "tokens_per_sec": 66.41398007704092,
+        "avg_accepted": 0.4339622641509434,
+        "avg_tokens_per_step": 2.4339622641509435,
+        "num_steps": 53,
+        "easy_ratio": 0.6981132075471698,
+        "medium_ratio": 0.18867924528301888,
+        "hard_ratio": 0.11320754716981132
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.8221669727936387,
+        "tokens_per_sec": 70.24603228526196,
+        "avg_accepted": 0.56,
+        "avg_tokens_per_step": 2.56,
+        "num_steps": 50,
+        "easy_ratio": 0.82,
+        "medium_ratio": 0.12,
+        "hard_ratio": 0.06
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 1.6812330721877515,
+        "tokens_per_sec": 77.32419861978677,
+        "avg_accepted": 0.8260869565217391,
+        "avg_tokens_per_step": 2.8260869565217392,
+        "num_steps": 46,
+        "easy_ratio": 0.34782608695652173,
+        "medium_ratio": 0.45652173913043476,
+        "hard_ratio": 0.1956521739130435
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.0982548440806568,
+        "tokens_per_sec": 61.47966266534269,
+        "avg_accepted": 0.2631578947368421,
+        "avg_tokens_per_step": 2.263157894736842,
+        "num_steps": 57,
+        "easy_ratio": 0.9122807017543859,
+        "medium_ratio": 0.03508771929824561,
+        "hard_ratio": 0.05263157894736842
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.9705555900000036,
+        "tokens_per_sec": 65.46377105758268,
+        "avg_accepted": 0.3888888888888889,
+        "avg_tokens_per_step": 2.388888888888889,
+        "num_steps": 54,
+        "easy_ratio": 0.9074074074074074,
+        "medium_ratio": 0.05555555555555555,
+        "hard_ratio": 0.037037037037037035
+      },
+      {
+        "tokens_generated": 95,
+        "wall_time": 1.3510592482052743,
+        "tokens_per_sec": 70.31519907524151,
+        "avg_accepted": 0.5675675675675675,
+        "avg_tokens_per_step": 2.5675675675675675,
+        "num_steps": 37,
+        "easy_ratio": 0.5405405405405406,
+        "medium_ratio": 0.35135135135135137,
+        "hard_ratio": 0.10810810810810811
+      },
+      {
+        "tokens_generated": 131,
+        "wall_time": 1.9898852538317442,
+        "tokens_per_sec": 65.83294174764349,
+        "avg_accepted": 0.38181818181818183,
+        "avg_tokens_per_step": 2.381818181818182,
+        "num_steps": 55,
+        "easy_ratio": 0.6181818181818182,
+        "medium_ratio": 0.2,
+        "hard_ratio": 0.18181818181818182
+      },
+      {
+        "tokens_generated": 19,
+        "wall_time": 0.3075767131522298,
+        "tokens_per_sec": 61.77320709775671,
+        "avg_accepted": 0.375,
+        "avg_tokens_per_step": 2.375,
+        "num_steps": 8,
+        "easy_ratio": 0.875,
+        "medium_ratio": 0.0,
+        "hard_ratio": 0.125
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.438810884952545,
+        "tokens_per_sec": 52.48459435282972,
+        "avg_accepted": 0.2857142857142857,
+        "avg_tokens_per_step": 2.2857142857142856,
+        "num_steps": 56,
+        "easy_ratio": 0.7857142857142857,
+        "medium_ratio": 0.16071428571428573,
+        "hard_ratio": 0.05357142857142857
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 2.095776769798249,
+        "tokens_per_sec": 61.552357034866006,
+        "avg_accepted": 0.4339622641509434,
+        "avg_tokens_per_step": 2.4339622641509435,
+        "num_steps": 53,
+        "easy_ratio": 0.8113207547169812,
+        "medium_ratio": 0.11320754716981132,
+        "hard_ratio": 0.07547169811320754
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.9318928020074964,
+        "tokens_per_sec": 66.25626425389173,
+        "avg_accepted": 0.5098039215686274,
+        "avg_tokens_per_step": 2.5098039215686274,
+        "num_steps": 51,
+        "easy_ratio": 0.6078431372549019,
+        "medium_ratio": 0.13725490196078433,
+        "hard_ratio": 0.2549019607843137
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 1.718886953778565,
+        "tokens_per_sec": 74.46679359490302,
+        "avg_accepted": 0.782608695652174,
+        "avg_tokens_per_step": 2.782608695652174,
+        "num_steps": 46,
+        "easy_ratio": 0.5434782608695652,
+        "medium_ratio": 0.30434782608695654,
+        "hard_ratio": 0.15217391304347827
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.915081834886223,
+        "tokens_per_sec": 67.36004574324836,
+        "avg_accepted": 0.4807692307692308,
+        "avg_tokens_per_step": 2.480769230769231,
+        "num_steps": 52,
+        "easy_ratio": 0.6923076923076923,
+        "medium_ratio": 0.1346153846153846,
+        "hard_ratio": 0.17307692307692307
+      },
+      {
+        "tokens_generated": 128,
+        "wall_time": 2.0767740202136338,
+        "tokens_per_sec": 61.63405298513552,
+        "avg_accepted": 0.24561403508771928,
+        "avg_tokens_per_step": 2.245614035087719,
+        "num_steps": 57,
+        "easy_ratio": 0.6842105263157895,
+        "medium_ratio": 0.17543859649122806,
+        "hard_ratio": 0.14035087719298245
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.9750571381300688,
+        "tokens_per_sec": 65.31456610016546,
+        "avg_accepted": 0.3888888888888889,
+        "avg_tokens_per_step": 2.388888888888889,
+        "num_steps": 54,
+        "easy_ratio": 0.6111111111111112,
+        "medium_ratio": 0.2037037037037037,
+        "hard_ratio": 0.18518518518518517
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.9027560977265239,
+        "tokens_per_sec": 67.79639290297557,
+        "avg_accepted": 0.58,
+        "avg_tokens_per_step": 2.58,
+        "num_steps": 50,
+        "easy_ratio": 0.6,
+        "medium_ratio": 0.3,
+        "hard_ratio": 0.1
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 1.8738563265651464,
+        "tokens_per_sec": 69.37564964668086,
+        "avg_accepted": 0.5,
+        "avg_tokens_per_step": 2.5,
+        "num_steps": 52,
+        "easy_ratio": 0.46153846153846156,
+        "medium_ratio": 0.2692307692307692,
+        "hard_ratio": 0.2692307692307692
+      },
+      {
+        "tokens_generated": 129,
+        "wall_time": 1.9385105660185218,
+        "tokens_per_sec": 66.54593596822698,
+        "avg_accepted": 0.4807692307692308,
+        "avg_tokens_per_step": 2.480769230769231,
+        "num_steps": 52,
+        "easy_ratio": 0.5384615384615384,
+        "medium_ratio": 0.21153846153846154,
+        "hard_ratio": 0.25
+      },
+      {
+        "tokens_generated": 130,
+        "wall_time": 1.7372512891888618,
+        "tokens_per_sec": 74.83085539150652,
+        "avg_accepted": 0.7659574468085106,
+        "avg_tokens_per_step": 2.765957446808511,
+        "num_steps": 47,
+        "easy_ratio": 0.2978723404255319,
+        "medium_ratio": 0.425531914893617,
+        "hard_ratio": 0.2765957446808511
+      }
+    ]
+  }
+}

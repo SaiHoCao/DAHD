@@ -1,0 +1,78 @@
+2026-07-01 20:11:17,701 - E2E - INFO - ============================================================
+2026-07-01 20:11:17,701 - E2E - INFO - DAHD vs EAGLE-3 End-to-End Speculative Decoding Eval
+2026-07-01 20:11:17,701 - E2E - INFO - ============================================================
+2026-07-01 20:11:17,701 - E2E - INFO -   Target model: /mnt/nas1/hf/Qwen3-8B/
+2026-07-01 20:11:17,701 - E2E - INFO -   EAGLE-3 K=5, Parallel K=6
+2026-07-01 20:11:17,701 - E2E - INFO -   DAHD AR K=3
+2026-07-01 20:11:17,701 - E2E - INFO -   Max new tokens: 128
+2026-07-01 20:11:17,701 - E2E - INFO -   Num prompts: 50
+2026-07-01 20:11:21,296 - E2E - INFO - Loading tokenizer...
+2026-07-01 20:11:23,050 - E2E - INFO - Loading target model (Qwen3-8B)...
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:   0%|          | 1/399 [00:00<01:23,  4.78it/s]Loading weights:   1%|          | 2/399 [00:48<3:06:56, 28.25s/it]Loading weights:   4%|▍         | 15/399 [00:48<15:12,  2.38s/it] Loading weights:   7%|▋         | 28/399 [00:48<06:23,  1.03s/it]Loading weights:  10%|▉         | 39/399 [00:48<03:43,  1.61it/s]Loading weights:  13%|█▎        | 50/399 [00:48<02:18,  2.53it/s]Loading weights:  17%|█▋        | 67/399 [00:48<01:13,  4.51it/s]Loading weights:  20%|█▉        | 78/399 [00:48<00:51,  6.25it/s]Loading weights:  22%|██▏       | 89/399 [00:48<00:36,  8.56it/s]Loading weights:  25%|██▍       | 99/399 [00:49<00:26, 11.27it/s]Loading weights:  28%|██▊       | 112/399 [00:49<00:17, 16.21it/s]Loading weights:  31%|███       | 122/399 [00:49<00:13, 20.81it/s]Loading weights:  34%|███▍      | 135/399 [00:49<00:09, 28.91it/s]Loading weights:  37%|███▋      | 148/399 [00:49<00:06, 37.04it/s]Loading weights:  41%|████      | 163/399 [00:49<00:04, 49.96it/s]Loading weights:  45%|████▌     | 180/399 [00:49<00:03, 66.88it/s]Loading weights:  48%|████▊     | 193/399 [00:49<00:02, 70.87it/s]Loading weights:  53%|█████▎    | 212/399 [00:50<00:02, 90.20it/s]Loading weights:  57%|█████▋    | 226/399 [00:50<00:01, 97.22it/s]Loading weights:  60%|█████▉    | 239/399 [00:50<00:01, 102.39it/s]Loading weights:  63%|██████▎   | 252/399 [00:50<00:01, 96.12it/s] Loading weights:  66%|██████▌   | 264/399 [00:50<00:01, 89.38it/s]Loading weights:  70%|███████   | 280/399 [00:50<00:01, 102.48it/s]Loading weights:  73%|███████▎  | 292/399 [00:50<00:01, 99.18it/s] Loading weights:  78%|███████▊  | 312/399 [00:50<00:00, 119.69it/s]Loading weights:  81%|████████▏ | 325/399 [00:51<00:00, 116.77it/s]Loading weights:  85%|████████▍ | 338/399 [00:51<00:00, 105.14it/s]Loading weights:  88%|████████▊ | 350/399 [00:51<00:00, 58.04it/s] Loading weights:  90%|████████▉ | 359/399 [00:52<00:01, 34.55it/s]Loading weights:  92%|█████████▏| 366/399 [00:52<00:00, 36.37it/s]Loading weights:  95%|█████████▌| 380/399 [00:52<00:00, 47.69it/s]Loading weights:  98%|█████████▊| 391/399 [00:52<00:00, 56.08it/s]Loading weights: 100%|██████████| 399/399 [00:52<00:00,  7.56it/s]
+2026-07-01 20:12:18,480 - E2E - INFO - Loading EAGLE-3 draft head...
+2026-07-01 20:12:22,239 - E2E - INFO - Loading Hydra Parallel Branch...
+2026-07-01 20:12:27,638 - E2E - INFO - Loading Difficulty Router...
+2026-07-01 20:12:27,665 - E2E - INFO - All models loaded successfully.
+2026-07-01 20:12:28,175 - E2E - INFO - Loaded 397 prompts, using last 50
+2026-07-01 20:12:28,175 - E2E - INFO - Warming up with 2 prompts...
+2026-07-01 20:12:44,135 - E2E - INFO - 
+============================================================
+2026-07-01 20:12:44,136 - E2E - INFO - Running mode: VANILLA
+2026-07-01 20:12:44,136 - E2E - INFO - ============================================================
+2026-07-01 20:12:54,804 - E2E - INFO -   [1/50] avg_tps=12.0
+2026-07-01 20:14:16,000 - E2E - INFO -   [10/50] avg_tps=14.6
+2026-07-01 20:16:05,503 - E2E - INFO -   [20/50] avg_tps=13.3
+2026-07-01 20:17:38,985 - E2E - INFO -   [30/50] avg_tps=13.8
+2026-07-01 20:18:31,895 - E2E - INFO -   [40/50] avg_tps=16.6
+2026-07-01 20:19:48,939 - E2E - INFO -   [50/50] avg_tps=17.3
+2026-07-01 20:19:48,962 - E2E - INFO - 
+============================================================
+2026-07-01 20:19:48,963 - E2E - INFO - Running mode: EAGLE3
+2026-07-01 20:19:48,963 - E2E - INFO - ============================================================
+2026-07-01 20:19:57,669 - E2E - INFO -   [1/50] avg_accepted=0.462, avg_tps=14.7
+2026-07-01 20:20:47,014 - E2E - INFO -   [10/50] avg_accepted=0.858, avg_tps=26.4
+2026-07-01 20:22:02,559 - E2E - INFO -   [20/50] avg_accepted=1.004, avg_tps=22.6
+2026-07-01 20:23:05,040 - E2E - INFO -   [30/50] avg_accepted=1.016, avg_tps=23.4
+2026-07-01 20:23:46,679 - E2E - INFO -   [40/50] avg_accepted=1.020, avg_tps=26.0
+2026-07-01 20:24:45,992 - E2E - INFO -   [50/50] avg_accepted=1.003, avg_tps=26.0
+2026-07-01 20:24:46,204 - E2E - INFO - 
+============================================================
+2026-07-01 20:24:46,204 - E2E - INFO - Running mode: PARALLEL
+2026-07-01 20:24:46,204 - E2E - INFO - ============================================================
+2026-07-01 20:24:55,997 - E2E - INFO -   [1/50] avg_accepted=0.081, avg_tps=13.2
+2026-07-01 20:25:56,749 - E2E - INFO -   [10/50] avg_accepted=0.193, avg_tps=21.9
+2026-07-01 20:27:33,075 - E2E - INFO -   [20/50] avg_accepted=0.188, avg_tps=18.4
+2026-07-01 20:28:53,574 - E2E - INFO -   [30/50] avg_accepted=0.183, avg_tps=18.6
+2026-07-01 20:29:48,458 - E2E - INFO -   [40/50] avg_accepted=0.178, avg_tps=20.3
+2026-07-01 20:31:00,262 - E2E - INFO -   [50/50] avg_accepted=0.180, avg_tps=20.5
+2026-07-01 20:31:00,571 - E2E - INFO - 
+============================================================
+2026-07-01 20:31:00,571 - E2E - INFO - Running mode: DAHD
+2026-07-01 20:31:00,571 - E2E - INFO - ============================================================
+2026-07-01 20:31:09,768 - E2E - INFO -   [1/50] avg_accepted=0.207, avg_tps=13.9
+2026-07-01 20:32:04,587 - E2E - INFO -   [10/50] avg_accepted=0.465, avg_tps=24.0
+2026-07-01 20:33:29,500 - E2E - INFO -   [20/50] avg_accepted=0.485, avg_tps=20.3
+2026-07-01 20:34:41,442 - E2E - INFO -   [30/50] avg_accepted=0.484, avg_tps=20.8
+2026-07-01 20:35:29,137 - E2E - INFO -   [40/50] avg_accepted=0.478, avg_tps=22.9
+2026-07-01 20:36:34,365 - E2E - INFO -   [50/50] avg_accepted=0.474, avg_tps=23.1
+2026-07-01 20:36:34,674 - E2E - INFO - Results saved to /data1/caoshuaihu.csh/workspace/dahd_speculative_decoding/results/phase4_results/
+2026-07-01 20:36:35,538 - E2E - INFO - Chart saved to /data1/caoshuaihu.csh/workspace/dahd_speculative_decoding/results/phase4_results/comparison_chart.png
+2026-07-01 20:36:35,539 - E2E - INFO - Done!
+
+================================================================================
+END-TO-END COMPARISON RESULTS
+================================================================================
+Mode         AcceptRate   Acc/Step   Tok/Step   Tok/s      Speedup    Time(s)   
+--------------------------------------------------------------------------------
+vanilla      0.0000       0.000      1.000      14.6       1.000      424.6     
+eagle3       0.1919       0.959      2.961      21.3       1.461      296.9     
+parallel     0.0357       0.178      2.179      17.1       1.168      373.9     
+dahd         0.1112       0.465      2.466      18.9       1.298      333.7     
+================================================================================
+
+DAHD Router Stats:
+  Easy (Parallel) count: 1512, ratio: 0.590
+  Hard (AR) count: 1052
+  Easy avg accepted: 0.195
+  Hard avg accepted: 0.853
