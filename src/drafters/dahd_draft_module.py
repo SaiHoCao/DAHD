@@ -1,6 +1,10 @@
-"""DAHD (Difficulty-Adaptive Hybrid Drafting) core draft module.
+"""DAHD (Difficulty-Adaptive Hybrid Drafting) draft module — 参考/探索性架构.
 
-This module implements the core components of the DAHD approach:
+NOTE: 这是一个参考/探索性架构实现。论文中报告的 DAHD v2 端到端结果
+使用的是 experiments/phase4_e2e/run_e2e_comparison.py 中的 SpecDecEngine。
+本模块提供可复用的模块化组件，适用于未来的工程集成。
+
+Components:
 - SharedBottomLayer: Shared feature extraction using small Transformer layers
 - ARBranch: Autoregressive drafting branch for hard samples
 - ParallelBranch: Parallel drafting branch (Gumiho-style) for easy samples

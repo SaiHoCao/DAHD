@@ -8,11 +8,11 @@ import os
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-with open(os.path.join(SCRIPT_DIR, 'medusa_e2e_comparison.json')) as f:
+with open(os.path.join(SCRIPT_DIR, 'e2e_comparison_v2.json')) as f:
     data = json.load(f)
 
 summary = data['summary']
-methods = ['vanilla', 'eagle3', 'medusa', 'dahd']
+methods = ['vanilla', 'eagle3', 'parallel', 'dahd']
 labels = ['vanilla', 'eagle3', 'parallel\n(gumiho)', 'dahd']
 colors = ['#1f77b4', '#2ca02c', '#ff7f0e', '#9467bd']
 
@@ -37,7 +37,7 @@ axes[1].set_ylim(0, max(speedup) * 1.15)
 axes[1].legend()
 
 # 3. Avg Draft Acceptance per Step
-acc_methods = ['eagle3', 'medusa', 'dahd']
+acc_methods = ['eagle3', 'parallel', 'dahd']
 acc_labels = ['eagle3', 'parallel\n(gumiho)', 'dahd']
 acc_colors = ['#2ca02c', '#ff7f0e', '#9467bd']
 acc_vals = [summary[m]['avg_accepted_per_step'] for m in acc_methods]

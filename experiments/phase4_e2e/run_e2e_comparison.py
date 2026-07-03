@@ -428,6 +428,8 @@ class SpecDecEngine:
             bonus_logit  – logits at acceptance point (for routing)
             verify_aux   – aux hidden states [1, K+1, 3*hs] from verify output
             verify_ids   – [1, K+1] token IDs fed during verify
+
+        验证方式为贪心（argmax），保证输出与 target model 贪心解码完全一致（lossless for greedy）。
         """
         K          = len(draft_tokens)
         verify_ids = torch.tensor(
@@ -441,7 +443,7 @@ class SpecDecEngine:
             output_hidden_states=True,
         )
 
-        # Greedy accept: logit[i] predicts what follows verify_ids[i]
+        # 贪心验证：仅当 target argmax == draft token 时接受。当前不支持随机采样。
         n_accepted = 0
         for i, dt in enumerate(draft_tokens):
             if verify_out.logits[0, i].argmax().item() == dt:
@@ -583,7 +585,8 @@ class SpecDecEngine:
             n_acc, bonus, target_kv, current_len, last_hidden, _, verify_aux, verify_ids = \
                 self.verify_with_kv(target_kv, old_len, target_next, drafts)
 
-            n_tokens    += n_acc + 2    # target_next + accepted drafts + bonus
+            # +2 = 1 (target_next) + 1 (bonus); 注意最后一步可能超出 max_new_tokens
+            n_tokens    += n_acc + 2
             n_acc_total += n_acc
             n_steps     += 1
             target_next  = bonus
@@ -602,7 +605,8 @@ class SpecDecEngine:
         elapsed = time.perf_counter() - t0
 
         return {
-            "tokens_generated":    n_tokens,
+            "tokens_generated":    min(n_tokens, self.cfg.max_new_tokens),
+            "tokens_generated_raw": n_tokens,
             "wall_time":           elapsed,
             "tokens_per_sec":      n_tokens / max(elapsed, 1e-6),
             "avg_accepted":        n_acc_total / max(n_steps, 1),
@@ -641,6 +645,7 @@ class SpecDecEngine:
             n_acc, bonus, target_kv, current_len, last_hidden, _, _, _ = \
                 self.verify_with_kv(target_kv, current_len, target_next, drafts)
 
+            # +2 = 1 (target_next) + 1 (bonus); 注意最后一步可能超出 max_new_tokens
             n_tokens    += n_acc + 2
             n_acc_total += n_acc
             n_steps     += 1
@@ -655,7 +660,8 @@ class SpecDecEngine:
         elapsed = time.perf_counter() - t0
 
         return {
-            "tokens_generated":    n_tokens,
+            "tokens_generated":    min(n_tokens, self.cfg.max_new_tokens),
+            "tokens_generated_raw": n_tokens,
             "wall_time":           elapsed,
             "tokens_per_sec":      n_tokens / max(elapsed, 1e-6),
             "avg_accepted":        n_acc_total / max(n_steps, 1),
@@ -715,6 +721,7 @@ class SpecDecEngine:
             n_acc, bonus, target_kv, current_len, last_hidden, bonus_logit, verify_aux, verify_ids = \
                 self.verify_with_kv(target_kv, old_len, target_next, drafts)
 
+            # +2 = 1 (target_next) + 1 (bonus); 注意最后一步可能超出 max_new_tokens
             n_tokens    += n_acc + 2
             n_acc_total += n_acc
             n_steps     += 1
@@ -737,7 +744,8 @@ class SpecDecEngine:
 
         total_routed = cnt_easy + cnt_med + cnt_hard
         return {
-            "tokens_generated":    n_tokens,
+            "tokens_generated":    min(n_tokens, self.cfg.max_new_tokens),
+            "tokens_generated_raw": n_tokens,
             "wall_time":           elapsed,
             "tokens_per_sec":      n_tokens / max(elapsed, 1e-6),
             "avg_accepted":        n_acc_total / max(n_steps, 1),

@@ -19,3 +19,9 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest", "ruff"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: marks tests requiring GPU and model access (deselect with '-m \"not slow\"')",
+]

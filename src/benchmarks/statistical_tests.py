@@ -396,3 +396,73 @@ def bootstrap_speedup(
     ci_upper = float(np.percentile(speedups, 100 * (1 - alpha / 2)))
 
     return (mean_speedup, ci_lower, ci_upper)
+
+
+def paired_bootstrap_ci(
+    method_a_scores: np.ndarray,
+    method_b_scores: np.ndarray,
+    n_bootstrap: int = 5000,
+    confidence: float = 0.95,
+    seed: int = 42,
+) -> dict:
+    """Compute paired bootstrap confidence interval for the difference in means.
+
+    Uses paired resampling: for each bootstrap iteration, resample the same
+    indices from both arrays, preserving the per-prompt pairing.
+
+    Args:
+        method_a_scores: Per-prompt metric for method A (e.g., tok/s), shape (n_prompts,).
+        method_b_scores: Per-prompt metric for method B, shape (n_prompts,).
+        n_bootstrap: Number of bootstrap iterations.
+        confidence: Confidence level (default 0.95 for 95% CI).
+        seed: Random seed for reproducibility.
+
+    Returns:
+        Dictionary with:
+            mean_diff: Mean of (A - B) across prompts.
+            ci_lower: Lower bound of CI for the mean difference.
+            ci_upper: Upper bound of CI for the mean difference.
+            p_value: One-sided p-value (proportion of bootstrap means < 0).
+            win_rate: Proportion of prompts where A > B.
+            win_rate_ci: (lower, upper) 95% CI for the win rate (Wilson interval).
+            n_prompts: Number of prompts used.
+    """
+    assert len(method_a_scores) == len(method_b_scores), "Arrays must have same length"
+    rng = np.random.default_rng(seed)
+    diffs = method_a_scores - method_b_scores
+    n = len(diffs)
+
+    # Paired bootstrap: resample indices, compute mean diff
+    bootstrap_means = np.empty(n_bootstrap)
+    for i in range(n_bootstrap):
+        indices = rng.integers(0, n, size=n)
+        bootstrap_means[i] = np.mean(diffs[indices])
+
+    alpha = 1 - confidence
+    ci_lower = float(np.percentile(bootstrap_means, 100 * alpha / 2))
+    ci_upper = float(np.percentile(bootstrap_means, 100 * (1 - alpha / 2)))
+
+    # One-sided p-value: P(mean_diff < 0)
+    p_value = float(np.mean(bootstrap_means < 0))
+
+    # Win rate with Wilson confidence interval
+    wins = np.sum(diffs > 0)
+    win_rate = float(wins / n)
+    # Wilson interval for binomial proportion
+    z = 1.96  # z for 95% CI
+    denominator = 1 + z**2 / n
+    centre = (win_rate + z**2 / (2 * n)) / denominator
+    margin = z * np.sqrt((win_rate * (1 - win_rate) + z**2 / (4 * n)) / n) / denominator
+    win_rate_ci = (max(0.0, float(centre - margin)), min(1.0, float(centre + margin)))
+
+    return {
+        "mean_diff": float(np.mean(diffs)),
+        "std_diff": float(np.std(diffs)),
+        "ci_lower": ci_lower,
+        "ci_upper": ci_upper,
+        "p_value": p_value,
+        "win_rate": win_rate,
+        "win_rate_ci": win_rate_ci,
+        "n_prompts": n,
+        "n_bootstrap": n_bootstrap,
+    }

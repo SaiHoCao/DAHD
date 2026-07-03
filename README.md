@@ -182,16 +182,23 @@ dahd_speculative_decoding/
 - 置信度分布图: `results/phase1_results_v2/acceptance_distribution.png`
 - 逐位置 acceptance: `results/phase1_results_v2/per_position_acceptance.png`
 
-### 4.2 Phase 4: 端到端对比
+### 4.2 Phase 4: 端到端对比（v2 优化版）
+
+**配置**: Qwen3-8B, H20 GPU, 50 prompts, max_new_tokens=128
 
 | Method | Tok/s | Speedup | Avg Accepted/Step |
 |--------|-------|---------|-------------------|
-| Vanilla AR | 19.7 | 1.00x | — |
-| EAGLE-3 (AR, K=5) | 27.0 | 1.37x | 1.00 |
-| Parallel (Gumiho, K=5) | 19.7 | 1.00x | 0.08 |
-| DAHD (Router, threshold=0.8) | 22.1 | 1.12x | 0.36 |
+| Vanilla AR | 36.38 | 1.00x | — |
+| EAGLE-3 (K=5) | 63.32 | 1.74x | 1.00 |
+| Parallel (Gumiho, K=5) | 60.36 | 1.66x | 0.25 |
+| **DAHD (3-modal, K=4/3/2)** | **66.92** | **1.84x** | 0.50 |
 
-**DAHD 路由比例**: Parallel 66.7%, EAGLE-3 33.3%
+**DAHD 路由比例**: Easy 63.5%, Medium 22.1%, Hard 14.5%
+- Easy → Parallel branch (K=4)
+- Medium → EAGLE-3 AR (K=3)
+- Hard → EAGLE-3 AR (K=2)
+
+**数据来源**: `results/phase4_e2e/e2e_comparison_v2.json`
 
 **对比图表**: `results/phase4_e2e/e2e_comparison_chart.png`
 
@@ -223,7 +230,9 @@ dahd_speculative_decoding/
 - **架构**: 1-layer Transformer (GQA 32/8 heads, hidden_size=4096)
 - **权重**: 预训练好的 `/mnt/nas1/hf/qwen3_8b_eagle3/` (~380M params)
 - **生成方式**: 逐步 auto-regressive with KV cache
-- **Draft 长度**: K=5
+- **Draft 长度**:
+  - EAGLE-3 baseline: K=5 (fixed)
+  - DAHD dynamic: K_easy=4, K_medium=3, K_hard=2
 
 ### 5.2 Parallel Branch: Gumiho-style
 
@@ -264,6 +273,9 @@ class DifficultyRouter(nn.Module):
 - 训练集: 48952 positions (easy: 25700, hard: 23252)
 - Accuracy: 71.8%
 - 权重文件: `checkpoints/difficulty_router.pt` (4MB)
+
+> **实现说明**: DAHD v2 端到端评估实现位于 `experiments/phase4_e2e/run_e2e_comparison.py`。
+> `src/drafters/dahd_draft_module.py` 为模块化参考架构，适用于未来工程集成。
 
 ---
 
