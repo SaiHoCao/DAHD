@@ -243,16 +243,18 @@ dahd_speculative_decoding/
 
 ### 5.3 Router: Difficulty-based Threshold
 
-**Rule-based（当前使用）**:
+**Rule-based（当前使用，v2 三模态）**:
 ```python
 # 每一轮 speculative decoding:
 target_out = target_model(input_ids)
 top1_prob = softmax(target_out.logits[-1]).max()
 
-if top1_prob > 0.8:
-    draft_tokens = parallel_forward(hidden_states)  # Parallel, K=5
+if top1_prob > 0.75:  # easy_threshold
+    draft_tokens = parallel_forward(hidden_states)  # Parallel (Gumiho), K=4
+elif top1_prob > 0.50:  # hard_threshold
+    draft_tokens = eagle3_forward(hidden_states, K=3)  # AR, K=3 (medium)
 else:
-    draft_tokens = eagle3_forward(hidden_states)  # AR, K=5
+    draft_tokens = eagle3_forward(hidden_states, K=2)  # AR, K=2 (hard)
 ```
 
 **MLP-based Router（已训练）**:
@@ -304,7 +306,7 @@ class DifficultyRouter(nn.Module):
 | Decoding | Greedy (temperature=0) |
 | Draft K (EAGLE-3) | 5 |
 | Draft K (Parallel) | 5 |
-| DAHD 阈值 | top1_prob = 0.8 |
+| DAHD 阈值 | easy_threshold=0.75, hard_threshold=0.50（三模态） |
 | 随机种子 | 42 |
 
 ---
@@ -323,7 +325,7 @@ class DifficultyRouter(nn.Module):
 - Easy 模式: μ=0.814, σ=0.142, 权重 39.7%
 - Hard 模式: μ=0.335, σ=0.147, 权重 60.3%
 
-**阈值选择**: 当前使用 top1_prob = 0.8 作为切换点（CDF 图中 Easy 区域的左边界）。
+**阈值选择（v2 三模态）**: easy_threshold=0.75, hard_threshold=0.50。top1_prob > 0.75 为 Easy，0.50 < top1_prob ≤ 0.75 为 Medium，top1_prob ≤ 0.50 为 Hard。
 
 **进阶方案**（待实现）:
 - DifficultyProbe: 轻量 MLP 直接从 hidden states 预测难度
@@ -335,8 +337,9 @@ class DifficultyRouter(nn.Module):
 
 | 条件 | 选择 | 原因 |
 |------|------|------|
-| Easy (top1_prob > 0.8) | Parallel (Gumiho) | 1 次前向生成 K 个 token，延迟低 |
-| Hard (top1_prob ≤ 0.8) | AR (EAGLE-3) | 精确度高，避免浪费验证资源 |
+| Easy (top1_prob > 0.75) | Parallel (Gumiho), K=4 | 1 次前向生成 K 个 token，延迟低 |
+| Medium (0.50 < top1_prob ≤ 0.75) | AR (EAGLE-3), K=3 | 中等精度，适度步长 |
+| Hard (top1_prob ≤ 0.50) | AR (EAGLE-3), K=2 | 精确打击，避免 tail 指数衰减 |
 
 **为什么并行适合 Easy**:
 - 并行模式 O(1) 延迟（1 次前向 → K 个 token），但每个位置独立预测 → acceptance 依赖各位置独立准确率
@@ -350,7 +353,7 @@ class DifficultyRouter(nn.Module):
 
 **当前方案 (Rule-based)**:
 
-每一步 speculative decoding 时，先获取 target model 前向的 logits，计算 top-1 概率。若超过阈值 0.8，使用 Gumiho 并行生成；否则使用 EAGLE-3 自回归生成。
+每一步 speculative decoding 时，先获取 target model 前向的 logits，计算 top-1 概率。v2 使用三模态路由：top1_prob > 0.75 → Gumiho 并行生成 (K=4)；0.50 < top1_prob ≤ 0.75 → EAGLE-3 AR (K=3)；top1_prob ≤ 0.50 → EAGLE-3 AR (K=2)。
 
 **训练版 Router (MLP-based)**:
 

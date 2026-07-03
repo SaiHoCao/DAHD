@@ -502,13 +502,17 @@ class SpecDecEngine:
         torch.cuda.synchronize()
         elapsed = time.perf_counter() - t0
 
+        # Vanilla AR stops at max_new_tokens so clamped == raw, but add for schema consistency
+        clamped = min(n_tokens, self.cfg.max_new_tokens)
         return {
-            "tokens_generated": n_tokens,
-            "wall_time":        elapsed,
-            "tokens_per_sec":   n_tokens / max(elapsed, 1e-6),
-            "avg_accepted":     0.0,
+            "tokens_generated":    clamped,
+            "tokens_generated_raw": n_tokens,
+            "wall_time":           elapsed,
+            "tokens_per_sec":      clamped / max(elapsed, 1e-6),
+            "tokens_per_sec_raw":  n_tokens / max(elapsed, 1e-6),
+            "avg_accepted":        0.0,
             "avg_tokens_per_step": 1.0,
-            "num_steps":        n_tokens,
+            "num_steps":           n_tokens,
         }
 
     @torch.no_grad()
@@ -604,13 +608,15 @@ class SpecDecEngine:
         torch.cuda.synchronize()
         elapsed = time.perf_counter() - t0
 
+        clamped = min(n_tokens, self.cfg.max_new_tokens)
         return {
-            "tokens_generated":    min(n_tokens, self.cfg.max_new_tokens),
+            "tokens_generated":    clamped,
             "tokens_generated_raw": n_tokens,
             "wall_time":           elapsed,
-            "tokens_per_sec":      n_tokens / max(elapsed, 1e-6),
+            "tokens_per_sec":      clamped / max(elapsed, 1e-6),
+            "tokens_per_sec_raw":  n_tokens / max(elapsed, 1e-6),
             "avg_accepted":        n_acc_total / max(n_steps, 1),
-            "avg_tokens_per_step": n_tokens    / max(n_steps, 1),
+            "avg_tokens_per_step": n_tokens / max(n_steps, 1),
             "num_steps":           n_steps,
         }
 
@@ -659,13 +665,15 @@ class SpecDecEngine:
         torch.cuda.synchronize()
         elapsed = time.perf_counter() - t0
 
+        clamped = min(n_tokens, self.cfg.max_new_tokens)
         return {
-            "tokens_generated":    min(n_tokens, self.cfg.max_new_tokens),
+            "tokens_generated":    clamped,
             "tokens_generated_raw": n_tokens,
             "wall_time":           elapsed,
-            "tokens_per_sec":      n_tokens / max(elapsed, 1e-6),
+            "tokens_per_sec":      clamped / max(elapsed, 1e-6),
+            "tokens_per_sec_raw":  n_tokens / max(elapsed, 1e-6),
             "avg_accepted":        n_acc_total / max(n_steps, 1),
-            "avg_tokens_per_step": n_tokens    / max(n_steps, 1),
+            "avg_tokens_per_step": n_tokens / max(n_steps, 1),
             "num_steps":           n_steps,
         }
 
@@ -743,13 +751,15 @@ class SpecDecEngine:
         elapsed = time.perf_counter() - t0
 
         total_routed = cnt_easy + cnt_med + cnt_hard
+        clamped = min(n_tokens, self.cfg.max_new_tokens)
         return {
-            "tokens_generated":    min(n_tokens, self.cfg.max_new_tokens),
+            "tokens_generated":    clamped,
             "tokens_generated_raw": n_tokens,
             "wall_time":           elapsed,
-            "tokens_per_sec":      n_tokens / max(elapsed, 1e-6),
+            "tokens_per_sec":      clamped / max(elapsed, 1e-6),
+            "tokens_per_sec_raw":  n_tokens / max(elapsed, 1e-6),
             "avg_accepted":        n_acc_total / max(n_steps, 1),
-            "avg_tokens_per_step": n_tokens    / max(n_steps, 1),
+            "avg_tokens_per_step": n_tokens / max(n_steps, 1),
             "num_steps":           n_steps,
             "easy_ratio":          cnt_easy / max(total_routed, 1),
             "medium_ratio":        cnt_med  / max(total_routed, 1),
