@@ -186,12 +186,12 @@ dahd_speculative_decoding/
 
 **配置**: Qwen3-8B, H20 GPU, 50 prompts, max_new_tokens=128
 
-| Method | Tok/s | Speedup | Avg Accepted/Step |
-|--------|-------|---------|-------------------|
-| Vanilla AR | 36.38 | 1.00x | — |
-| EAGLE-3 (K=5) | 63.32 | 1.74x | 1.00 |
-| Parallel (Gumiho, K=5) | 60.36 | 1.66x | 0.25 |
-| **DAHD (3-modal, K=4/3/2)** | **66.92** | **1.84x** | 0.50 |
+| Method | Tok/s | Speedup | Avg Accepted/Step | Tok/Step |
+|--------|-------|---------|-------------------|----------|
+| Vanilla AR | 43.53 | 1.00x | — | 1.00 |
+| EAGLE-3 (K=5) | 74.59 | 1.71x | 1.01 | 3.01 |
+| Parallel (Gumiho, K=5) | 64.02 | 1.47x | 0.25 | 2.25 |
+| **DAHD (3-modal, K=4/3/2)** | **67.40** | **1.55x** | 0.50 | 2.50 |
 
 **DAHD 路由比例**: Easy 63.5%, Medium 22.1%, Hard 14.5%
 - Easy → Parallel branch (K=4)
@@ -199,6 +199,10 @@ dahd_speculative_decoding/
 - Hard → EAGLE-3 AR (K=2)
 
 **数据来源**: `results/phase4_e2e/e2e_comparison_v2.json`
+
+> **注意**: 此结果使用 clamped throughput（tokens_per_sec = min(tokens_generated, max_new_tokens) / wall_time），
+> 确保公平比较。EAGLE-3 在固定 K=5 下优于当前 DAHD 阈值路由，说明 DAHD 的阈值路由
+> 需要进一步优化为 cost-aware 版本（参见 P1 TODO）。
 
 **对比图表**: `results/phase4_e2e/e2e_comparison_chart.png`
 
@@ -400,10 +404,10 @@ K_optimal ≈ -1 / ln(α)
 | 结论 | 证据 |
 |------|------|
 | ✅ 双模态假设成立 | Dip test p=0.000, GMM BIC 改善 1070 |
-| ✅ Router 机制有效 | DAHD (1.12x) > Parallel (1.00x) |
-| ✅ EAGLE-3 AR 强劲 | 1.37x speedup, 稳定可靠 |
-| ⚠️ Parallel 分支训练不足 | head_1 仅 12.9%，需要 10-50x 更多训练 |
-| ⚠️ DAHD 尚未超越 EAGLE-3 | 因 Parallel 分支太弱 |
+| ✅ Router 机制有效 | DAHD (1.55x) > Parallel (1.47x)，mean diff +3.38 tok/s, p=0.0, win rate 78% |
+| ✅ EAGLE-3 AR 强劲 | 1.71x speedup, 稳定可靠 |
+| ⚠️ DAHD 未超越 EAGLE-3 | mean diff -7.19 tok/s, p=1.0, win rate 4%；需 cost-aware router |
+| ⚠️ 当前阈值路由不够 optimal | 简单三模态阈值路由需升级为 cost-aware 版本 |
 
 ### 9.2 为什么 DAHD 还没赢
 

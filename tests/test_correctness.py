@@ -271,7 +271,11 @@ class TestAcceptanceAccounting:
     """Verify acceptance metrics are internally consistent."""
 
     def test_avg_tokens_per_step_consistency(self, per_prompt_results):
-        """avg_tokens_per_step * num_steps should approximate tokens_generated."""
+        """avg_tokens_per_step * num_steps should approximate tokens_generated_raw.
+
+        Note: avg_tokens_per_step is computed from raw n_tokens (not clamped),
+        so consistency check must use tokens_generated_raw.
+        """
         methods = ["eagle3", "parallel", "dahd"]
         for prompt_result in per_prompt_results:
             for method in methods:
@@ -280,12 +284,12 @@ class TestAcceptanceAccounting:
                 r = prompt_result[method]
                 if r["num_steps"] == 0:
                     continue
-                # avg_tokens_per_step = tokens_generated / num_steps
+                # avg_tokens_per_step uses raw n_tokens
                 expected = r["avg_tokens_per_step"] * r["num_steps"]
-                actual = r["tokens_generated"]
+                actual = r.get("tokens_generated_raw", r["tokens_generated"])
                 assert abs(expected - actual) < 1.0, (
                     f"{method}: avg_tokens_per_step * num_steps = {expected:.1f} "
-                    f"!= tokens_generated = {actual}"
+                    f"!= tokens_generated_raw = {actual}"
                 )
 
     def test_avg_accepted_non_negative(self, per_prompt_results):

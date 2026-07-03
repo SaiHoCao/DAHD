@@ -52,8 +52,8 @@ class E2EConfig:
     eagle3_config_path:   str = "/mnt/nas1/hf/qwen3_8b_eagle3/config.json"
     eval_data_path:       str = "/mnt/nas1/hf/qwen3_8b_eagle3/eagle_data.jsonl"
 
-    gumiho_ckpt: str = str(PROJECT_ROOT / "checkpoints/gumiho/gumiho_best.pt")
-    legacy_ckpt: str = str(PROJECT_ROOT / "checkpoints/gumiho/legacy_best.pt")
+    gumiho_ckpt: str = str(PROJECT_ROOT / "checkpoints/medusa/gumiho_best.pt")
+    legacy_ckpt: str = str(PROJECT_ROOT / "checkpoints/medusa/legacy_best.pt")
 
     # Architecture
     hidden_size:          int         = 4096
